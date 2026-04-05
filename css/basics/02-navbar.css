@@ -1,0 +1,39 @@
+        :root {
+            --main-color: rgb(248, 106, 106);
+            --sec-color: rgb(245, 217, 217);
+            --opacity: 0.9;
+            --font-size: 20px;
+            --font-weight: 700;
+        }
+
+        body {
+            background-color: var(--sec-color);
+        }
+
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .nav {
+            border: 1px solid var(--main-color);
+            height: 130px;
+            background-color: var(--main-color);
+            opacity: var(--opacity);
+
+        }
+
+        .ul li {
+            display: inline-block;
+            padding-top: 100px;
+            padding-left: 50px;
+            color: var(--sec-color);
+            font-size: var(--font-size);
+            font-weight: var(--font-weight);
+
+        }
+
+        .ul li a {
+            color: var(--sec-color);
+            text-decoration: none;
+        }
