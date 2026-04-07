@@ -1,0 +1,47 @@
+        .logo img {
+            height: 50px;
+            width: 163px;
+        }
+
+        .cont {
+            display: flex;
+            border: 1px solid rgb(194, 191, 191);
+            background-color: whitesmoke;
+            justify-content: space-around;
+            align-items: center;
+            font-family: Inter, Helvetica, Arial, ;
+
+        }
+
+        .right a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .right ul li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            
+            cursor: pointer;
+
+
+        }
+
+        .right ul {
+            display: flex;
+            gap: 30px;
+            text-decoration: none;
+        }
+
+        .right ul li span{
+            padding: 0 5px;
+        }
+        .right ul li button{
+            padding: 10px;
+            display: flex;
+            justify-content: end;
+            background-color: orange;
+            border: 0 solid;
+            border-radius: 3px;
+        }
