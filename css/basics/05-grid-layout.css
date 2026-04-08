@@ -1,0 +1,54 @@
+    .sec {
+        max-width: 50vw;
+        margin: auto;
+        margin-left: 10%;
+    }
+
+    .grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .box {
+        border: 0px solid;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        margin-top: 30px;
+        background-color: #f9f9f9;
+    }
+
+    .lang {
+        text-align: center;
+    }
+
+    .button {
+        background-color: yellow;
+        border: 0 solid black;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 10px;
+        width: 150px;
+        cursor: pointer;
+    }
+
+    .button a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .p {
+        text-align: center;
+    }
+
+    .span {
+        font-size: 10px;
+    }
+
+    @media screen and (max-width: 1145px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
