@@ -1,2 +1,2 @@
 # Learning-Web-Dev
-My web development learning journey
+My web development(MERN stack) learning journey
