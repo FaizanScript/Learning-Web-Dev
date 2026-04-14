@@ -89,6 +89,7 @@ nav {
 
 .line {
     height: 3px;
+    margin-top: -25px;
     background-color: red;
 }
 
