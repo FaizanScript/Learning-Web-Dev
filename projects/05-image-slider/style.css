@@ -76,14 +76,14 @@ body {
 }
 
 .content .name {
-    font-size: clamp(1.4rem, 4vw, 2, 5rem);
+    font-size: clamp(1.4rem, 4vw, 5rem);
     font-weight: bold;
     opacity: 0;
     animation: animate 1s ease-in-out 1 forwards;
 }
 
 .content .d {
-    font-size: clmap(0.8rem, 1.8vw, 1rem);
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
     margin-top: 10px;
     margin-bottom: 20px;
     opacity: 0;
@@ -135,6 +135,31 @@ body {
 .button button:hover {
     background: #ababab;
     color: #fff;
+}
+
+.dots {
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.dots span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ababab;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dots span.active {
+    width: 22px;
+    border-radius: 5px;
+    background: #333;
 }
 
 
