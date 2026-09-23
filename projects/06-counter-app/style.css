@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card h1 {
+    font-size: clamp(24px, 5vw, 48px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+    border-radius: 20px;
+    background: #e0e0e0;
+    box-shadow: 
+        10px 10px 20px #bebebe,
+        -10px -10px 20px #ffffff;
+    padding: 30px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.count {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    font-size: clamp(2rem, 4rem, 5rem);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+.btn-group {
+    width: 60vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    padding: 20px;
+    font-size: 2rem;
+    border: none;
+    border-radius: 12px;
+    background: #e0e0e0;
+    cursor: pointer;
+    box-shadow: 
+        5px 5px 10px #bebebe,
+        -5px -5px 10px #ffffff;
+}
+
+.btn:active {
+    box-shadow:
+        inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #ffffff;
+}
+
+
+@media (max-width: 400px) {
+    .btn-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+
