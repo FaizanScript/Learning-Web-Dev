@@ -35,6 +35,8 @@ body {
  
 .author {
     color: #666;
+    display: block;
+    text-align: right;
 }
  
 .new {
