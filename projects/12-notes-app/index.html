@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Notes</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="container">
+
+        <h1 class="title">My Notes</h1>
+
+        <!-- Search -->
+        <input
+            class="search-input"
+            type="search"
+            placeholder="Search notes..."
+            aria-label="Search notes">
+
+        <!-- Add a note (a form lets Enter submit it) -->
+        <form class="input">
+            <input
+                class="note-input"
+                type="text"
+                placeholder="Write a note..."
+                aria-label="New note"
+                required>
+            <button class="add" type="submit" aria-label="Add note">+</button>
+        </form>
+
+        <!-- Notes -->
+        <ul class="list">
+            <li class="note">
+                <span class="text">xyz</span>
+                <button class="delete" type="button" aria-label="Delete note">&times;</button>
+            </li>
+        </ul>
+
+        <!-- Show this when there are no notes (toggle the hidden attribute in JS) -->
+        <p class="empty" hidden>No notes yet. Write your first one above.</p>
+
+    </main>
+
+</body>
+</html>
