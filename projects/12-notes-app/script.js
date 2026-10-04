@@ -3,8 +3,9 @@ let searchInput = document.querySelector(".search-input");
 let form = document.querySelector(".input");
 let noteInput = document.querySelector(".note-input");
 let list = document.querySelector(".list");
+let emptyNote = document.querySelector(".empty");
 
-
+// creating the elements thats gonna be in the list
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
