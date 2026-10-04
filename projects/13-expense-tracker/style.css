@@ -1,0 +1,225 @@
+:root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --text: #14161a;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --field: #f0f1f4;
+    --accent: #2f4bff;
+    --accent-hover: #1f37d6;
+    --danger: #d93a2b;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0e1013;
+        --surface: #16191e;
+        --text: #eef0f3;
+        --muted: #8b93a1;
+        --line: #252a32;
+        --field: #1e2229;
+        --accent: #6d82ff;
+        --accent-hover: #8a9bff;
+        --danger: #ff6b5c;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 3rem 1rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 33rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+}
+
+h1 {
+    margin: 0 0 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+/* Form */
+.expense-form {
+    display: grid;
+    grid-template-columns: 1fr 8rem auto;
+    gap: 0.75rem;
+    align-items: end;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+input {
+    width: 100%;
+    height: 2.9rem;
+    padding: 0 0.9rem;
+    font: inherit;
+    color: var(--text);
+    background: var(--field);
+    border: 2px solid transparent;
+    border-radius: 12px;
+}
+
+input::placeholder {
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+.add {
+    width: 2.9rem;
+    height: 2.9rem;
+    font: 500 1.6rem/1 var(--font);
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.add:hover {
+    background: var(--accent-hover);
+}
+
+.add:focus-visible,
+.delete:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Total */
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 2rem 0 0.5rem;
+    padding-top: 1.5rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+}
+
+#total-expenses {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+/* List */
+.expense-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.expense-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.expense-item:last-child {
+    border-bottom: 0;
+}
+
+.expense-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-weight: 500;
+}
+
+.expense-amount {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.delete {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    font: 1.3rem/1 var(--font);
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.delete:hover {
+    color: var(--danger);
+    background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
+/* Empty state */
+.empty {
+    margin: 1.5rem 0 0;
+    padding: 1.5rem;
+    color: var(--muted);
+    text-align: center;
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+}
+
+.empty[hidden] {
+    display: none;
+}
+
+/* Small screens */
+@media (max-width: 30rem) {
+    body {
+        padding: 1rem 0.75rem;
+    }
+
+    .container {
+        padding: 1.25rem;
+    }
+
+    .expense-form {
+        grid-template-columns: 1fr auto;
+    }
+
+    .field:first-child {
+        grid-column: 1 / -1;
+    }
+}
