@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="container">
+        <h1>Expense Tracker</h1>
+
+        <form class="expense-form" id="expense-form">
+            <div class="field">
+                <label for="expense-name">Expense name</label>
+                <input id="expense-name" name="name" type="text" placeholder="e.g. Groceries" required maxlength="50"
+                    autocomplete="off">
+            </div>
+
+            <div class="field">
+                <label for="expense-amount">Amount (₹)</label>
+                <input id="expense-amount" name="amount" type="number" placeholder="0.00" min="0.01" step="0.01"
+                    inputmode="decimal" required>
+            </div>
+
+            <button class="add" type="submit" aria-label="Add expense">+</button>
+        </form>
+
+        <p class="total">
+            Total expenses: <span id="total-expenses" aria-live="polite">0</span>
+        </p>
+
+        <ul class="expense-list" id="expense-list">
+            <!-- <li class="expense-item">
+                <span class="expense-name">Groceries</span>
+                <span class="expense-amount">₹450.00</span>
+                <button class="delete" type="button" aria-label="Delete Groceries">&times;</button>
+            </li> -->
+        </ul>
+
+        <p class="empty" id="empty-message">
+            No expenses yet. Add your first one above.
+        </p>
+
+    </main>
+
+</body>
+
+</html>
