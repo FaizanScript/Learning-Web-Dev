@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main>
+        <h1>Weather Dashboard</h1>
+
+        <form class="search-form">
+            <label for="city-input">City</label>
+            <input type="text" id="city-input" class="city-input" name="city" placeholder="e.g. Ranchi"
+                autocomplete="off" required>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <!-- Loading state: announced politely to screen readers -->
+        <p class="loading" role="status" hidden>Loading...</p>
+
+        <!-- Success state -->
+        <section class="weather" aria-labelledby="weather-city" hidde>
+            <h2 id="weather-city" class="city">Ranchi</h2>
+
+            <dl class="weather-data">
+                <div class="weather-item">
+                    <dt>Temperature</dt>
+                    <dd class="temperature">28°C</dd>
+                </div>
+                <div class="weather-item">
+                    <dt>Humidity</dt>
+                    <dd class="humidity">65%</dd>
+                </div>
+                <div class="weather-item">
+                    <dt>Wind</dt>
+                    <dd class="wind">12 km/h</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Error state: announced immediately -->
+        <p class="not-found" role="alert" hidden>City not found.</p>
+    </main>
+
+</body>
+
+</html>
