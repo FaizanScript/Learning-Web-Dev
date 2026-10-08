@@ -1,4 +1,4 @@
-// selecting the elements (quering)
+// selecting the elements (querying)
 let weatherForm = document.querySelector(".search-form");
 let cityInput = document.querySelector(".city-input");
 let loadingState = document.querySelector(".loading");
@@ -12,92 +12,77 @@ let humidity = document.querySelector(".humidity");
 let wind = document.querySelector(".wind");
 
 
-
 // function code to get the weather data when search button is clicked
-weatherForm.addEventListener("submit", function (event) {
-    // this stops the browser from executing its default behavior associated with a specific event
+weatherForm.addEventListener("submit", async function (event) {
+
     event.preventDefault();
 
-    // making sure to hidden the states
+    // making sure to hide the states
     loadingState.hidden = false;
     successState.hidden = true;
     errorState.hidden = true;
 
-    // to get the cityname from the user's input
+    // to get the city name from the user's input
     let cityName = cityInput.value.trim();
 
-    // this the first API to get the city name, latitude and longitude
+    // first API: get city name, latitude and longitude
     let url = `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}`;
 
-    // fetching the first API
-    fetch(url)
+    try {
 
-    // the fectch returns the raw data
+        // FIRST API
+        const response = await fetch(url);
 
-        // to make that data readable, this will give the data in object/array form  
-        .then(function (response) {
-            return response.json();
-        })
+        if (!response.ok) {
+            throw new Error("HTTP error");
+        }
 
-        // the returned data from first .then will go here 
-        .then(function (data) {
+        const data = await response.json();
 
-            // these are the things we want for the 2nd API
-            const name = data.results[0].name;
-            const latitude = data.results[0].latitude;
-            const longitude = data.results[0].longitude;
+        // check if city was found
+        if (data.results.length === 0) {
+            throw new Error("city not found");
+        }
 
-            // this is the 2nd API to get the weather data
-            const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`;
+        // get the data needed for the second API
+        const name = data.results[0].name;
+        const latitude = data.results[0].latitude;
+        const longitude = data.results[0].longitude;
 
-            // this part is the nested promise
+        // SECOND API: get weather data
+        const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m`;
 
-            return fetch(weatherUrl)
+        const weatherResponse = await fetch(weatherUrl);
 
-            // this will return the parsed data of weather api 
-                .then(function (response) {
-                    return response.json();
-                })
+        if (!weatherResponse.ok) {
+            throw new Error("HTTP error");
+        }
 
-            // the parsed data will go here and and it will return an object
-                .then(function (weatherData) {
-                    return {
-                        name: name,
-                        weather: weatherData
-                    };
-                });
+        const weatherData = await weatherResponse.json();
 
-            // so eventually this outer .then (2nd one) will return an object containing name and weatherdata
-        })
+        // get the weather values
+        const temperatureValue = weatherData.current.temperature_2m;
+        const humidityValue = weatherData.current.relative_humidity_2m;
+        const windValue = weatherData.current.wind_speed_10m;
 
-        // the 2nd returned data will go here
-        .then(function (data) {
+        // putting the data into the UI
+        city.textContent = name;
+        temperature.textContent = temperatureValue + "°C";
+        humidity.textContent = humidityValue + "%";
+        wind.textContent = windValue + " km/h";
 
-            // to get the weather data to show
-            const name = data.name;
-            const temperatureValue = data.weather.current.temperature_2m;
-            const humidityValue = data.weather.current.relative_humidity_2m;
-            const windValue = data.weather.current.wind_speed_10m;
+        // show successful state
+        successState.hidden = false;
 
-            // putting the data into the ui
-            city.textContent = name;
-            temperature.textContent = temperatureValue + "°C";
-            humidity.textContent = humidityValue + "%";
-            wind.textContent = windValue + "km/h";
+    } catch (error) {
 
-            // changing the state once i get the data
-            successState.hidden = false;
-        })
+        console.log(error);
+        errorState.hidden = false;
 
-        // this will run if the request get rejected
-        .catch(function (error) {
-            console.log(error);
-            errorState.hidden = false;
-        })
+    } finally {
 
-        // this will run regardless of anything
-        .finally(function () {
-            loadingState.hidden = true;
-        });
+        loadingState.hidden = true;
+
+    }
 
 });
