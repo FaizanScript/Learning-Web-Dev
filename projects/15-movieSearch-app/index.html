@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,49 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
-    
+
+    <main>
+
+        <h1>Movie Search App</h1>
+
+        <form class="search-form" role="search">
+            <label for="movie-search">Movie title</label>
+            <input type="search" id="movie-search" class="movie-search" name="movie" placeholder="e.g. The Batman"
+                autocomplete="off" required>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <!-- Status messages: loading, no results, errors -->
+        <p class="status" role="status" aria-live="polite"></p>
+
+        <section class="result-section" aria-labelledby="results-heading">
+            <h2 id="results-heading" class="visually-hidden">Search Results</h2>
+
+            <!-- JS fills this list. example of one result -->
+            <ul class="result-list">
+                <li>
+                    <article class="movie-card">
+                        <img class="poster" src="poster.jpg" alt="Poster" width="300" height="450" loading="lazy">
+                        <div class="movie-info">
+                            <h3 class="name">The Batman</h3>
+                            <p class="meta">
+                                <time class="date" datetime="2022-03-04">2022</time>
+                                <span class="rating">
+                                    <span class="visually-hidden">Rating:</span> 7.7
+                                </span>
+                            </p>
+                            <p class="overview">overview text will go here.</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+
+        </section>
+
+    </main>
+
 </body>
+
 </html>
