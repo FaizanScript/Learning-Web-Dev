@@ -18,6 +18,10 @@ searchForm.addEventListener("submit", async function (evt) {
 
     const url = `https://api.themoviedb.org/3/search/movie?query=${encodedMovieName}`;
 
+    statusMessage.textContent = "Searching for movies...";
+    statusMessage.hidden = false;
+    resultList.replaceChildren();
+
     try {
         // send the HTTP request and wait for the response object
         const response = await fetch(url, {
@@ -44,10 +48,21 @@ searchForm.addEventListener("submit", async function (evt) {
             id: movie.id
         }));
 
-        renderMovies(movies);
+        if (movies.length == 0) {
+            statusMessage.textContent = "No movies found. Try another title.";
+            statusMessage.hidden = false;
+            resultList.replaceChildren();
+        } else {
+            renderMovies(movies);
+            statusMessage.hidden = true;
+        }
+
 
     } catch (error) {
         console.error(error);
+        statusMessage.textContent = "oops, looks like something went wrong...";
+        statusMessage.hidden = false;
+        resultList.replaceChildren();
     }
 
 });
@@ -55,6 +70,8 @@ searchForm.addEventListener("submit", async function (evt) {
 
 // function code to render and show the results
 function renderMovies(movie) {
+
+    resultList.replaceChildren();
 
     // looping the movies array to get each object and create its card and render it
     movie.forEach(element => {
@@ -76,9 +93,15 @@ function renderMovies(movie) {
         // giving img elment its class
         img.classList.add("poster");
 
-        // setting the img of the poster
-        img.src = `https://image.tmdb.org/t/p/w500${element.poster}`;
-        img.alt = `Poster for ${element.title}`;
+        // checking if the element's psoter exists before setting to its img
+        if (!element.poster) {
+            img.style.display = 'none';
+        } else {
+            // setting the img of the poster
+            img.src = `https://image.tmdb.org/t/p/w500${element.poster}`;
+            img.alt = `Poster for ${element.title}`;
+        }
+
 
         // Hide the element if the image fails to load
         img.onerror = function () {
@@ -112,13 +135,17 @@ function renderMovies(movie) {
         // giving time its class
         date.classList.add("date");
 
-        // setting the text content of date
-        date.dateTime = element.releaseDate;
 
         // 3. Convert the date string into a JavaScript Date object
         const dateObj = new Date(element.releaseDate);
 
-        date.textContent = dateObj.getFullYear();
+        // Hide the element if the date dosnt exist and show if its valid
+        if (Number.isNaN(dateObj.getTime())) {
+            date.style.display = 'none';
+        } else {
+            date.textContent = dateObj.getFullYear();
+            date.dateTime = element.releaseDate;
+        }
 
         // creating the raing span element
         const rating = document.createElement("span");
@@ -126,8 +153,14 @@ function renderMovies(movie) {
         // giving the rating span element its class
         rating.classList.add("rating");
 
-        // setting the rating text content
-        rating.textContent = element.rating.toFixed(1);
+
+        // Hide the element if the rating is undefined
+        if (element.rating == null) {
+            rating.style.display = 'none';
+        } else {
+            // setting the rating text content
+            rating.textContent = element.rating.toFixed(1);
+        }
 
         // creating the overview element
         const overview = document.createElement("p");
@@ -135,8 +168,12 @@ function renderMovies(movie) {
         // giving overview element its class
         overview.classList.add("overview");
 
-        // setting the text content of overwiew
-        overview.textContent = element.overview;
+        // Hide the element if the overview is null or undefined
+        if (!element.overview || !element.overview.trim()) {
+            overview.textContent = "No overview avaliable.";
+        } else {
+            overview.textContent = element.overview;
+        }
 
 
         // appending the elements to its parent
