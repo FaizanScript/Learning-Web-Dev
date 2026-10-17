@@ -3,15 +3,16 @@
    ========================================================== */
 
 /* ---------- 1. Design tokens ---------- */
+
 :root {
     color-scheme: dark;
 
     /* colour */
-    --bg-0: #050505;
-    --bg-1: #111214;
+    --bg-0: #040605;
+    --bg-1: #0d110f;
     --text: #ececec;
-    --text-muted: #9a9ca3;
-    --accent: #d4d4d8;
+    --text-muted: #9aa39e;
+    --accent: #34d399;
     --danger: #ff8a8a;
 
     /* glass */
@@ -33,6 +34,7 @@
     --radius-sm: 12px;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 
 /* ---------- 2. Reset ---------- */
 *,
@@ -74,6 +76,7 @@ body {
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
 }
+
 
 /* Accessible hidden label */
 .visually-hidden {
