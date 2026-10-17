@@ -1,0 +1,497 @@
+/* ==========================================================
+   GitHub Profile Finder: glassmorphism, black & grey theme
+   ========================================================== */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+    color-scheme: dark;
+
+    /* colour */
+    --bg-0: #050505;
+    --bg-1: #111214;
+    --text: #ececec;
+    --text-muted: #9a9ca3;
+    --accent: #d4d4d8;
+    --danger: #ff8a8a;
+
+    /* glass */
+    --glass-bg: rgb(255 255 255 / 0.06);
+    --glass-bg-strong: rgb(255 255 255 / 0.1);
+    --glass-border: rgb(255 255 255 / 0.14);
+    --glass-highlight: rgb(255 255 255 / 0.22);
+    --glass-blur: blur(22px) saturate(160%);
+    --shadow: 0 24px 60px rgb(0 0 0 / 0.55);
+
+    /* type */
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --fs-title: clamp(1.7rem, 4vw + 0.5rem, 2.6rem);
+    --fs-name: clamp(1.35rem, 2vw + 0.8rem, 1.8rem);
+
+    /* shape */
+    --radius-lg: 28px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- 2. Reset ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input {
+    font: inherit;
+    color: inherit;
+}
+
+/* ---------- 3. Base ---------- */
+body {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    font-family: var(--font);
+    line-height: 1.5;
+    color: var(--text);
+    background-color: var(--bg-0);
+    /* soft grey glows give the glass something to blur */
+    background-image:
+        radial-gradient(60rem 40rem at 15% 10%, rgb(120 120 130 / 0.28), transparent 60%),
+        radial-gradient(50rem 40rem at 90% 85%, rgb(90 90 100 / 0.22), transparent 60%),
+        linear-gradient(160deg, var(--bg-0), var(--bg-1));
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Accessible hidden label */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ---------- 4. Layout ---------- */
+main {
+    width: min(100%, 640px);
+    display: grid;
+    gap: 1.25rem;
+}
+
+.header {
+    text-align: center;
+    padding-block: 0.5rem;
+}
+
+.title {
+    font-size: var(--fs-title);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    background: linear-gradient(180deg, #ffffff 20%, #8d8f96 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ---------- 5. Glass surface (shared) ---------- */
+.search-form,
+.profile,
+.repositories {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow:
+        var(--shadow),
+        inset 0 1px 0 var(--glass-highlight);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+
+/* ---------- 6. Search ---------- */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 999px;
+    transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.search-form:focus-within {
+    background: var(--glass-bg-strong);
+    border-color: var(--glass-highlight);
+}
+
+.search-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.8rem 1.1rem;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    font-size: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* the form already shows focus via :focus-within */
+.search-input:focus-visible {
+    outline: none;
+}
+
+
+.search-btn {
+    padding: 0.8rem 1.6rem;
+    border: 0;
+    border-radius: 999px;
+    font-weight: 600;
+    color: #0b0b0c;
+    background: linear-gradient(180deg, #f4f4f5, #b4b4ba);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.7);
+    cursor: pointer;
+    transition: transform 0.2s var(--ease), filter 0.2s var(--ease);
+}
+
+.search-btn:hover {
+    filter: brightness(1.08);
+}
+
+.search-btn:active {
+    transform: scale(0.97);
+}
+
+.search-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* ---------- 7. Status message ---------- */
+.status {
+    min-height: 1.5em;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.status:empty {
+    display: none;
+}
+
+.status.is-error {
+    color: var(--danger);
+}
+
+/* ---------- 8. Profile card ---------- */
+.profile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        "avatar info"
+        "stats  stats"
+        "link   link";
+    align-items: center;
+    gap: 1.5rem 1.75rem;
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    border-radius: var(--radius-lg);
+}
+
+
+/* Respect the `hidden` attribute (display:grid would override it) */
+.profile[hidden] {
+    display: none;
+}
+
+.avatar {
+    grid-area: avatar;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--glass-bg-strong);
+    border: 3px solid rgb(255 255 255 / 0.18);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+}
+
+.profile-info {
+    grid-area: info;
+    min-width: 0;
+}
+
+.name {
+    font-size: var(--fs-name);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.profile-username a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.profile-username a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.profile-bio {
+    margin-top: 0.75rem;
+    max-width: 60ch;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+}
+
+/* ---------- 9. Stats ---------- */
+.stats {
+    grid-area: stats;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgb(0 0 0 / 0.35);
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: var(--radius-md);
+}
+
+.stats-item {
+    display: flex;
+    flex-direction: column-reverse;
+    /* value on top, label below (HTML order stays dt → dd) */
+    align-items: center;
+    padding: 0.4rem;
+}
+
+.stats-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.stats-value {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 10. Profile link ---------- */
+.repo-link {
+    grid-area: link;
+    justify-self: start;
+    padding: 0.7rem 1.4rem;
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.repo-link:hover {
+    background: rgb(255 255 255 / 0.16);
+    border-color: var(--glass-highlight);
+}
+
+/* ---------- 10b. Results wrapper (profile + repositories) ---------- */
+.results {
+    display: grid;
+    gap: 1.25rem;
+}
+
+/* display:grid would override the `hidden` attribute */
+.results[hidden] {
+    display: none;
+}
+
+/* ---------- 10c. Repositories card ---------- */
+.repositories {
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border-radius: var(--radius-lg);
+}
+
+.repo-title {
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.repo-list {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.repo-item {
+    position: relative;
+    /*anchors the stretched link below*/
+    display: grid;
+    gap: 0.6rem;
+    padding: 1rem 1.15rem;
+    background: rgb(0 0 0 / 0.35);
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: var(--radius-md);
+    transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.repo-item:hover {
+    background: rgb(255 255 255 / 0.07);
+    border-color: var(--glass-highlight);
+}
+
+/* Show focus on the whole card when its link is focused by keyboard */
+.repo-item:has(a:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.repo-name {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.repo-name a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.repo-name a:focus-visible {
+    outline: none;
+    /* the card outline above replaces it */
+}
+
+/* Stretch the link over the card so the whole card is clickable */
+.repo-name a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+.repo-item:hover .repo-name a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.repo-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+    /* clamp to 2 lines so cards stay even */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+/* Language + stars pills */
+.repo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.repo-lang,
+.repo-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+}
+
+.repo-lang::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.repo-stars::before {
+    content: "\2605";
+    /* ★ */
+    color: var(--accent);
+}
+
+/* ---------- 11. Small screens ---------- */
+@media (max-width: 520px) {
+    .profile {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "avatar"
+            "info"
+            "stats"
+            "link";
+        justify-items: center;
+        text-align: center;
+    }
+
+    .repo-link {
+        justify-self: stretch;
+        text-align: center;
+    }
+
+    .profile-bio {
+        margin-inline: auto;
+    }
+}
+
+/* ---------- 12. Fallback if backdrop-filter is unsupported ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+
+    .search-form,
+    .profile,
+    .repositories {
+        background: rgb(28 29 32 / 0.92);
+    }
+}
+
+/* ---------- 13. Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
