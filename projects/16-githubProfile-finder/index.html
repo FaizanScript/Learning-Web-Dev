@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Github Profile Finder</title>
+</head>
+
+<body>
+
+    <main>
+
+        <header class="header">
+            <h1 class="title">GitHub Profile Finder</h1>
+        </header>
+
+        <form class="search-form" role="search">
+            <label for="search-input" class="visually-hidden">Github username</label>
+            <input type="search" id="search-input" class="search-input" name="username" spellcheck="false"
+                placeholder="search GitHub Username..." autocomplete="off" required>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <p class="status" role="status" aria-live="polite"></p>
+
+        <section class="results" aria-label="search result">
+
+            <article class="profile">
+
+                <img class="avatar" src="" alt="" width="120" height="120">
+
+                <div class="profile-info">
+                    <h2 class="name">Faizan</h2>
+                    <p class="profile-username"><a target="_blank" rel="noopener noreferrer"></a></p>
+                    <p class="profile-bio"></p>
+                </div>
+
+                <dl class="stats">
+                    <div class="stats-item">
+                        <dt class="stats-label">Repos</dt>
+                        <dd class="stats-value">8</dd>
+                    </div>
+                    <div class="stats-item">
+                        <dt class="stats-label">Followers</dt>
+                        <dd class="stats-value">100</dd>
+                    </div>
+                    <div class="stats-item">
+                        <dt class="stats-label">Followings</dt>
+                        <dd class="stats-value">10</dd>
+                    </div>
+                </dl>
+
+                <a class="repo-link" href="">View on Github</a>
+            </article>
+
+            <article class="repositories">
+
+                <h3 class="repo-title">latest rpositories</h3>
+
+                <ul class="repo-list">
+
+                    <li class="repo-item">
+
+                        <h4 class="repo-name">
+                            <a href="" target="_blank" rel="noopener noreferrer">angular-product-crud</a>
+                        </h4>
+
+                        <p class="repo-desc">lsdhflsdflsdkfjlkdjfalkjflskdfjlksdjfkdjflakjflklflskdfjlkd</p>
+
+                        <ul class="repo-meta">
+                            <li class="repo-lang">TypeScript</li>
+                            <li class="repo-stars"> <span class="visually-hidden">Stars:</span>12</li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
