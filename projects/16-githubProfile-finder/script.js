@@ -10,6 +10,8 @@ let usernameLink = username.querySelector("a");
 let bio = document.querySelector(".profile-bio");
 let statsValue = document.querySelectorAll(".stats-value");
 let profileLink = document.querySelector(".repo-link");
+let repoList = document.querySelector(".repo-list");
+let emptyRepo = document.querySelector(".empty-repo");
 
 
 
@@ -81,6 +83,9 @@ searchForm.addEventListener("submit", async function (evt) {
         statsValue[1].textContent = dataobject.followers;
         statsValue[2].textContent = dataobject.following;
 
+
+        await fetchRepositories(userSearch);
+
         // hiding the statusmsg and show the result only after a successful response
         statusMsg.hidden = true;
         result.hidden = false;
@@ -98,3 +103,98 @@ searchForm.addEventListener("submit", async function (evt) {
     }
 
 });
+
+
+// function code to fetch the repositories
+async function fetchRepositories(username) {
+
+    let repoURL = `https://api.github.com/users/${encodeURIComponent(username)}/repos`;
+
+    const response = await fetch(repoURL);
+
+    // check if the response is ok or not
+    if (!response.ok) {
+        throw new Error("Unable to load repositories. Please try again.");
+    }
+
+    const data = await response.json();
+
+    renderRepositories(data);
+
+}
+
+
+
+// function code to render the repositories
+function renderRepositories(repositories) {
+
+    console.log(repositories);
+    console.log(repositories.length);
+    console.log(emptyRepo);
+
+    // clearing the old results
+    repoList.replaceChildren();
+
+
+    if (repositories.length === 0) {
+        emptyRepo.textContent = "This user has no public repositories.";
+        emptyRepo.hidden = false;
+        return;
+    }
+
+    emptyRepo.hidden = true;
+
+
+    repositories.forEach(element => {
+
+        // creating the dynamic elements
+
+        let repoItem = document.createElement("li");
+        repoItem.classList.add("repo-item");
+
+        let repoName = document.createElement("h4");
+        repoName.classList.add("repo-name");
+
+        let repoLink = document.createElement("a");
+        repoLink.textContent = element.name;
+        repoLink.href = element.html_url;
+
+        let repoDesc = document.createElement("p");
+        repoDesc.classList.add("repo-desc");
+
+        if (element.description == null) {
+            repoDesc.textContent = "No description provided.";
+        } else {
+            repoDesc.textContent = element.description;
+        }
+
+        let repoMeta = document.createElement("ul");
+        repoMeta.classList.add("repo-meta");
+
+        let repoLang = document.createElement("li");
+        repoLang.classList.add("repo-lang");
+
+        if (element.language == null) {
+            repoLang.style.display = 'none';
+        } else {
+            repoLang.textContent = element.language;
+        }
+
+        let repoStars = document.createElement("li");
+        repoStars.classList.add("repo-stars");
+        repoStars.textContent = element.stargazers_count;
+
+
+        // appending the elements
+
+        repoMeta.append(repoLang, repoStars);
+
+        repoName.append(repoLink);
+
+        repoItem.append(repoName, repoDesc, repoMeta);
+
+        repoList.append(repoItem);
+
+    });
+
+}
