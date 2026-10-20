@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A multiple-choice quiz with score and timing summary.">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="quiz">
+
+        <header class="quiz-header">
+            <h1>Quiz App</h1>
+        </header>
+
+        <section class="quiz-screen" aria-labelledby="question-text">
+
+            <form class="question-form" id="question-form">
+
+                <div class="question-meta">
+
+                    <p class="question-count" aria-label="polite">
+                        Question <span data-current>6</span> of <span data-total>10</span>
+                    </p>
+
+                    <progress class="progress-bar" max="10" value="6" aria-label="Quiz progress">6 of 10</progress>
+
+                </div>
+
+                <fieldset class="options">
+
+                    <legend class="question" id="question-text">
+                        Which of these color contrast ratios defines the minimum
+                        WCAG 2.1 Level AA requirement for normal text?
+                    </legend>
+
+                    <div class="option">
+                        <input type="radio" id="option-a" name="answer" value="a" required>
+                        <label for="option-a">
+                            <span class="option-key" aria-hidden="true">A</span>
+                            <span class="option-text">4.5 : 1</span>
+                        </label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" id="option-b" name="answer" value="b" required>
+                        <label for="option-b">
+                            <span class="option-key" aria-hidden="true">B</span>
+                            <span class="option-text">3 : 1</span>
+                        </label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" id="option-c" name="answer" value="c" required>
+                        <label for="option-c">
+                            <span class="option-key" aria-hidden="true">C</span>
+                            <span class="option-text">2.5 : 1</span>
+                        </label>
+                    </div>
+
+                    <div class="option">
+                        <input type="radio" id="option-d" name="answer" value="d" required>
+                        <label for="option-d">
+                            <span class="option-key" aria-hidden="true">D</span>
+                            <span class="option-text">1.5 : 1</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Submit answer</button>
+
+                </fieldset>
+
+            </form>
+
+        </section>
+
+        <section class="result-screen" hidden aria-labelledby="result-title" tabindex="-1">
+
+            <h2 class="result-title" id="result-title">Solid performace</h2>
+
+            <div class="score-ring" style="--score: 83" role="img" aria-label="Score: 83 percent, 5 of 6 correct">
+                <p class="score-percent"><span data-percent>83</span>%</p>
+                <p class="score-fraction"><span data-correct-count>5</span>/<span data-total-count>6</span></p>
+            </div>
+
+            <dl class="stats">
+                <div class="stat">
+                    <dt>Correct</dt>
+                    <dd data-stat="correct">5</dd>
+                </div>
+                <div class="stat">
+                    <dt>Missed</dt>
+                    <dd data-stat="missed">1</dd>
+                </div>
+                <div class="stat">
+                    <dt>Time</dt>
+                    <!-- <time datetime="PT29S"> = machine-readable duration (29 seconds) -->
+                    <dd><time data-stat="time" datetime="PT29S">00:29</time></dd>
+                </div>
+                <div class="stat">
+                    <dt>Avg</dt>
+                    <dd><time data-stat="avg" datetime="PT5S">00:05</time></dd>
+                </div>
+            </dl>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
