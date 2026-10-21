@@ -1,0 +1,126 @@
+// data for the questions, options and answers
+const arrayOfQsObjects = [
+    {
+        question: "What is the full form of HTML?",
+        options: [
+            "Hyper Text Markup Language",
+            "Human Text Markup Language",
+            "High Technical Mechanical Language",
+            "Hyper Text Makeup Language"
+        ],
+        correctAnswer: 0
+    },
+    {
+        question: "What is the full form of CSS?",
+        options: [
+            "Cascading Sheet Style",
+            "Cascading Style Sheet",
+            "Color Style Sheet",
+            "Coloring Sheet Style"
+        ],
+        correctAnswer: 1
+    },
+    {
+        question: "Which language is used to add interactivity to a web page?",
+        options: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "SQL"
+        ],
+        correctAnswer: 2
+    },
+    {
+        question: "Which HTML tag is used to create a hyperlink?",
+        options: [
+            "<link>",
+            "<a>",
+            "<href>",
+            "<url>"
+        ],
+        correctAnswer: 1
+    },
+    {
+        question: "Which CSS property changes the text color of an element?",
+        options: [
+            "font-color",
+            "text-style",
+            "color",
+            "background-color"
+        ],
+        correctAnswer: 2
+    },
+    {
+        question: "Which keyword declares a variable that cannot be reassigned in JavaScript?",
+        options: [
+            "var",
+            "let",
+            "const",
+            "static"
+        ],
+        correctAnswer: 2
+    },
+    {
+        question: "What does DOM stand for?",
+        options: [
+            "Document Object Model",
+            "Data Object Management",
+            "Digital Output Method",
+            "Document Order Mapping"
+        ],
+        correctAnswer: 0
+    },
+    {
+        question: "Which symbol is used for single-line comments in JavaScript?",
+        options: [
+            "<!-- -->",
+            "//",
+            "#",
+            "/* */"
+        ],
+        correctAnswer: 1
+    },
+    {
+        question: "Which HTML tag is used to display an image?",
+        options: [
+            "<image>",
+            "<pic>",
+            "<img>",
+            "<src>"
+        ],
+        correctAnswer: 2
+    },
+    {
+        question: "What will `typeof 42` return in JavaScript?",
+        options: [
+            "\"string\"",
+            "\"number\"",
+            "\"integer\"",
+            "\"object\""
+        ],
+        correctAnswer: 1
+    }
+];
+
+
+// selecting elements (qerying)
+let question = document.querySelector(".question");
+let options = document.querySelectorAll(".option-text");
+let questionForm = document.querySelector(".question-form");
+
+
+// function code to render the question and options
+function renderQuestion(index) {
+
+    question.textContent = arrayOfQsObjects[index].question;
+
+    for (let i = 0; i < options.length; i++) {
+        options[i].textContent = arrayOfQsObjects[index].options[i];
+    }
+
+}    
+
+
+let currentQuestionIndex = 0;
+
+renderQuestion(currentQuestionIndex);
