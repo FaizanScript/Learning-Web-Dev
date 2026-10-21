@@ -24,7 +24,7 @@
 
                 <div class="question-meta">
 
-                    <p class="question-count" aria-label="polite">
+                    <p class="question-count" aria-live="polite">
                         Question <span data-current>6</span> of <span data-total>10</span>
                     </p>
 
@@ -71,15 +71,19 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-primary">Submit answer</button>
+                    <div class="answer-options">
 
+                    </div>
+                    
                 </fieldset>
+                
+                <button type="submit" class="btn-primary">Next Question</button>
 
             </form>
 
         </section>
 
-        <section class="result-screen" hidden aria-labelledby="result-title" tabindex="-1">
+        <section class="result-screen"  aria-labelledby="result-title" tabindex="-1" hidden>
 
             <h2 class="result-title" id="result-title">Solid performace</h2>
 
