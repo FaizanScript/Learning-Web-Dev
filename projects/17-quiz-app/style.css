@@ -77,10 +77,11 @@ dd {
 }
 
 .quiz-header h1 {
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--text-muted);
     letter-spacing: 0.02em;
+    text-align: center;
 }
 
 /* ---------- Question area ---------- */
@@ -181,7 +182,7 @@ dd {
     border-radius: 8px;
     background: var(--track);
     color: var(--text-muted);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 700;
     transition: background-color 0.15s ease, color 0.15s ease;
 }
@@ -303,8 +304,7 @@ dd {
 }
 
 .stat {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     align-items: baseline;
     padding: 0.75rem 1rem;
     background: var(--surface-raised);
