@@ -107,12 +107,20 @@ const arrayOfQsObjects = [
 let question = document.querySelector(".question");
 let options = document.querySelectorAll(".option-text");
 let questionForm = document.querySelector(".question-form");
+let totalQuestion = document.querySelector("[data-total]");
+let currentquestionNo = document.querySelector("[data-current]");
+let form = document.querySelector(".question-form");
+let quizScreen = document.querySelector(".quiz-screen");
+let resultScreen = document.querySelector(".result-screen");
 
 
 // function code to render the question and options
 function renderQuestion(index) {
 
     question.textContent = arrayOfQsObjects[index].question;
+    currentquestionNo.textContent = index+1;
+    totalQuestion.textContent = arrayOfQsObjects.length; 
+
 
     for (let i = 0; i < options.length; i++) {
         options[i].textContent = arrayOfQsObjects[index].options[i];
@@ -121,6 +129,32 @@ function renderQuestion(index) {
 }    
 
 
+
 let currentQuestionIndex = 0;
 
 renderQuestion(currentQuestionIndex);
+
+// function code to render the question as it moves through by submitting the form
+form.addEventListener("submit", function (evt) {
+    
+    evt.preventDefault();
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex === arrayOfQsObjects.length) {
+        renderResults();
+    } else {
+        renderQuestion(currentQuestionIndex);
+    }
+
+
+});
+
+
+// function code to render the result screen
+function renderResults() {
+
+    quizScreen.hidden = true;
+    resultScreen.hidden = false;
+
+}
