@@ -112,6 +112,7 @@ let currentquestionNo = document.querySelector("[data-current]");
 let form = document.querySelector(".question-form");
 let quizScreen = document.querySelector(".quiz-screen");
 let resultScreen = document.querySelector(".result-screen");
+let answers = document.querySelectorAll('input[type="radio"]');
 
 
 // function code to render the question and options
@@ -126,18 +127,47 @@ function renderQuestion(index) {
         options[i].textContent = arrayOfQsObjects[index].options[i];
     }
 
+    answers.forEach(element => {
+        element.checked = false;
+    });
+
 }    
 
 
 
+// function code to render the question as it moves through by submitting the form
 let currentQuestionIndex = 0;
+
+let score = 0;
 
 renderQuestion(currentQuestionIndex);
 
-// function code to render the question as it moves through by submitting the form
 form.addEventListener("submit", function (evt) {
     
     evt.preventDefault();
+
+    let selectedAnswerIndex = -1;
+
+    answers.forEach((element, index) => {
+
+        if (element.checked === true) {
+            selectedAnswerIndex = index;
+        }
+
+    });
+
+    let currentQuestion = arrayOfQsObjects[currentQuestionIndex];
+
+    if (selectedAnswerIndex === -1) {
+        alert("please select an answer");
+        return;
+    }
+
+    if (selectedAnswerIndex === currentQuestion.correctAnswer) {
+        score++;
+    } else {
+        console.log("incorrect");
+    }
 
     currentQuestionIndex++;
 
@@ -158,3 +188,6 @@ function renderResults() {
     resultScreen.hidden = false;
 
 }
+
+
+
