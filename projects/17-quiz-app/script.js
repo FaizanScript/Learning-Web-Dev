@@ -113,14 +113,26 @@ let form = document.querySelector(".question-form");
 let quizScreen = document.querySelector(".quiz-screen");
 let resultScreen = document.querySelector(".result-screen");
 let answers = document.querySelectorAll('input[type="radio"]');
+let progressBar = document.querySelector(".progress-bar");
+let correctStat = document.querySelector('[data-stat="correct"]');
+let missedStat = document.querySelector('[data-stat="missed"]');
+let timeStat = document.querySelector('[data-stat="time"]');
+let avgStat = document.querySelector('[data-stat="avg"]');
+let resultTitle = document.querySelector(".result-title");
+let scorePercent = document.querySelector("[data-percent]");
+let correctCount = document.querySelector("[data-correct-count]");
+let scoreRing = document.querySelector(".score-ring");
+let timeTaken = document.querySelector('[data-stat="time"]');
+let avgTime = document.querySelector(`[data-stat="avg"]`);
+let button = document.querySelector(".btn-primary");
 
 
 // function code to render the question and options
 function renderQuestion(index) {
 
     question.textContent = arrayOfQsObjects[index].question;
-    currentquestionNo.textContent = index+1;
-    totalQuestion.textContent = arrayOfQsObjects.length; 
+    currentquestionNo.textContent = index + 1;
+    totalQuestion.textContent = arrayOfQsObjects.length;
 
 
     for (let i = 0; i < options.length; i++) {
@@ -131,7 +143,7 @@ function renderQuestion(index) {
         element.checked = false;
     });
 
-}    
+}
 
 
 
@@ -142,8 +154,11 @@ let score = 0;
 
 renderQuestion(currentQuestionIndex);
 
+let startTime = Date.now();
+let endTime;
+
 form.addEventListener("submit", function (evt) {
-    
+
     evt.preventDefault();
 
     let selectedAnswerIndex = -1;
@@ -171,7 +186,10 @@ form.addEventListener("submit", function (evt) {
 
     currentQuestionIndex++;
 
+    progressBar.value++;
+
     if (currentQuestionIndex === arrayOfQsObjects.length) {
+        endTime = Date.now();
         renderResults();
     } else {
         renderQuestion(currentQuestionIndex);
@@ -187,7 +205,56 @@ function renderResults() {
     quizScreen.hidden = true;
     resultScreen.hidden = false;
 
+    correctStat.textContent = score;
+    correctCount.textContent = score;
+    missedStat.textContent = arrayOfQsObjects.length - score;
+    scorePercent.textContent = Math.round(
+        (score / arrayOfQsObjects.length) * 100
+    );
+
+    // for result title
+    if (scorePercent.textContent >= 80) {
+        resultTitle.textContent = "Excellent work!";
+    } else if (scorePercent.textContent >= 50) {
+        resultTitle.textContent = "Good effort!";
+    } else {
+        resultTitle.textContent = "Keep practicing!";
+    }
+
+    // for score ring
+    scoreRing.style.setProperty('--score', `${scorePercent.textContent}`);
+    scoreRing.setAttribute(
+        "aria-label",
+        `Score: ${scorePercent.textContent} percent, ${score} of ${arrayOfQsObjects.length} correct`
+    );
+
+    // for Time Taken
+    let elapsedTime = endTime - startTime;
+
+    elapsedTime = Math.floor(elapsedTime / 1000);
+
+    let minutes = Math.floor(elapsedTime / 60);
+    let seconds = elapsedTime % 60;
+
+    timeTaken.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+    timeTaken.setAttribute(
+        "datetime",
+        `PT${minutes}M${seconds}S`
+    );
+
+    // for average time
+    let avg = Math.round(elapsedTime / arrayOfQsObjects.length);
+
+    let avgMinutes = Math.floor(avg / 60);
+    let avgSeconds = avg % 60;
+
+    avgTime.textContent = `${String(avgMinutes).padStart(2, "0")}:${String(avgSeconds).padStart(2, "0")}`;
+
+    avgTime.setAttribute(
+        "datetime",
+        `PT${avgMinutes}M${avgSeconds}S`
+    );
+
+
 }
-
-
-
