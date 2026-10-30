@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A classic Snake game built with HTML, CSS and JavaScript.">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1 class="title">Snake Game</h1>
+
+        <section aria-label="Game">
+            <dl class="infos">
+                <div class="info">
+                    <dt>High Score</dt>
+                    <dd id="high-score">0</dd>
+                </div>
+                <div class="info">
+                    <dt>Score</dt>
+                    <dd id="score" aria-live="polite">0</dd>
+                </div>
+                <div class="info">
+                    <dt>Time</dt>
+                    <dd id="time">00:00</dd>
+                </div>
+            </dl>
+
+               <div class="board" role="img" aria-label="Snake game board"></div>
+
+            <!-- Optional on-screen controls for touch devices -->
+            <div class="controls" aria-label="Controls">
+                <button class="btn" data-dir="up" aria-label="Up">▲</button>
+                <button class="btn" data-dir="left" aria-label="Left">◀</button>
+                <button class="btn" data-dir="down" aria-label="Down">▼</button>
+                <button class="btn" data-dir="right" aria-label="Right">▶</button>
+            </div>
+
+        </section>
+
+           <dialog class="modal" id="modal">
+            <h2 id="modal-title">Welcome to the Snake Game</h2>
+            <p id="modal-text">Use the arrow keys or WASD to move.</p>
+            <button class="btn" id="modal-btn">Start Game</button>
+            
+    </main>
+
+</body>
+
+</html>

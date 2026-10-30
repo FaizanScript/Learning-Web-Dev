@@ -1,0 +1,410 @@
+/* ==========================================================================
+   Snake: "Dusk Pond" theme
+   Aubergine ground, periwinkle snake, amber food.
+   Works with the <dl> stats, <dialog> modal and .controls markup.
+   JS hooks kept from the original: .block, .fill, .food
+   ========================================================================== */
+
+@layer reset, tokens, base, layout, components, states, responsive;
+
+/* ---------- Reset ---------- */
+@layer reset {
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    button {
+        font: inherit;
+        color: inherit;
+    }
+}
+
+/* ---------- Design tokens ---------- */
+@layer tokens {
+    :root {
+        color-scheme: light;
+
+        /* surfaces */
+        --bg-ground: #e9e8e4;
+        --bg-surface: #f4f3f0;
+        --bg-board: #dedcd6;
+        --bg-raised: #dcdad4;
+        --bg-glow: #f2f1ee;
+        /* soft highlight behind the title */
+
+        /* game pieces */
+        --snake: #3f4a46;
+        --snake-deep: #2c3532;
+        --food: #a8845f;
+        --food-highlight: #c4a583;
+
+        /* text */
+        --text-primary: #22282a;
+        --text-muted: #5f6764;
+        --on-accent: #f4f3f0;
+        /* text on the snake-colored button */
+
+        /* lines */
+        --line: #c9c7c0;
+        --line-faint: #cfcdc6;
+        --focus: #3d6f8f;
+
+        /* interaction + overlays */
+        --btn-hover: #d2d0c9;
+        --btn-primary-hover: #2c3532;
+        --backdrop: rgb(233 232 228 / 0.7);
+        --shadow-color: rgb(34 40 42 / 0.18);
+
+        /* spacing */
+        --space-xs: 4px;
+        --space-sm: 8px;
+        --space-md: 16px;
+        --space-lg: 24px;
+        --space-xl: 32px;
+
+        /* radius */
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 22px;
+
+        /* board cell size: keep in sync with the cell size in your JS */
+        --cell: 28px;
+
+        /* type */
+        --font-ui: ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI", system-ui, sans-serif;
+        --fs-title: clamp(1.6rem, 1.1rem + 2vw, 2.6rem);
+        --fs-label: 0.8rem;
+        --fs-value: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
+
+        /* motion */
+        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+    html {
+        height: 100%;
+        background: var(--bg-ground);
+        color: var(--text-primary);
+        font-family: var(--font-ui);
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        min-height: 100%;
+        height: 100dvh;
+        background:
+            radial-gradient(120% 80% at 50% -10%, var(--bg-glow) 0%, transparent 60%),
+            var(--bg-ground);
+    }
+
+    :focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+    }
+}
+
+/* ---------- Layout ---------- */
+@layer layout {
+    main {
+        width: 100%;
+        max-width: 1100px;
+        height: 100%;
+        margin-inline: auto;
+        padding: var(--space-md) var(--space-lg) var(--space-lg);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .title {
+        text-align: center;
+        font-size: var(--fs-title);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        padding-block: var(--space-sm);
+    }
+
+    section {
+        flex: 1;
+        min-height: 0;
+        /* lets the board shrink instead of overflowing */
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    /* stats row */
+    .infos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+    }
+
+    /* board fills whatever space is left */
+    .board {
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, var(--cell));
+        grid-template-rows: repeat(auto-fill, var(--cell));
+        justify-content: center;
+        align-content: center;
+    }
+}
+
+/* ---------- Components ---------- */
+@layer components {
+
+    /* Stat cards */
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+        padding: var(--space-sm) var(--space-md);
+        background: var(--bg-surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+    }
+
+    .info dt {
+        font-size: var(--fs-label);
+        color: var(--text-muted);
+        font-weight: 600;
+    }
+
+    .info dd {
+        font-size: var(--fs-value);
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+        /* timer digits don't jiggle */
+    }
+
+    /* Score is the hero stat */
+    .info:has(#score) {
+        border-color: color-mix(in oklch, var(--snake) 55%, var(--line));
+    }
+
+    .info:has(#score) dd {
+        color: var(--snake);
+    }
+
+    /* Board */
+    .board {
+        padding: var(--space-sm);
+        background: var(--bg-board);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow:
+            0 20px 50px -24px,
+            var(--shadow-color);
+        overflow: hidden;
+        touch-action: none;
+        /* swipes steer the snake, not scroll the page */
+    }
+
+    .block {
+        box-shadow: inset 0 0 0 1px var(--line-faint);
+        border-radius: 25%;
+    }
+
+    .fill {
+        background: linear-gradient(145deg, var(--snake), var(--snake-deep));
+        box-shadow: 0 0 12px -2px color-mix(in oklch, var(--snake) 60%, transparent);
+        scale: 0.92;
+    }
+
+    .food {
+        background: radial-gradient(circle at 35% 30%, var(--food-highlight), var(--food) 60%);
+        border-radius: 50%;
+        scale: 0.78;
+        box-shadow: 0 0 14px 1px color-mix(in oklch, var(--food) 55%, transparent);
+        animation: food-pop 0.35s var(--ease-out);
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-grid;
+        place-items: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: var(--space-sm) var(--space-lg);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--bg-raised);
+        font-weight: 700;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition:
+            background-color 0.2s ease,
+            transform 0.15s var(--ease-out);
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    #modal-btn {
+        background: var(--snake);
+        border-color: transparent;
+        color: var(--on-accent);
+    }
+
+    /* Touch controls (d-pad) */
+    .controls {
+        display: none;
+        /* shown only on touch devices, see responsive layer */
+        grid-template-areas:
+            ". up ."
+            "left . right"
+            ". down .";
+        grid-template-columns: repeat(3, 64px);
+        grid-auto-rows: 56px;
+        gap: var(--space-sm);
+        justify-content: center;
+    }
+
+    .controls .btn {
+        padding: 0;
+        font-size: 1.2rem;
+    }
+
+    .controls [data-dir="up"] {
+        grid-area: up;
+    }
+
+    .controls [data-dir="left"] {
+        grid-area: left;
+    }
+
+    .controls [data-dir="right"] {
+        grid-area: right;
+    }
+
+    .controls [data-dir="down"] {
+        grid-area: down;
+    }
+
+    /* Dialog (modal) */
+    dialog.modal {
+        margin: auto;
+        /* native centering */
+        width: min(92vw, 420px);
+        padding: var(--space-xl);
+        text-align: center;
+        background: var(--bg-surface);
+        color: var(--text-primary);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 30px 80px -24px var(--shadow-color);
+    }
+
+    dialog.modal[open] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+        animation: dialog-in 0.3s var(--ease-out);
+    }
+
+    dialog.modal::backdrop {
+        background: var(--backdrop);
+        backdrop-filter: blur(6px);
+    }
+
+    dialog.modal h2 {
+        font-size: 1.6rem;
+        letter-spacing: -0.01em;
+    }
+
+    dialog.modal p {
+        color: var(--text-muted);
+        max-width: 32ch;
+    }
+}
+
+/* ---------- Interaction states ---------- */
+@layer states {
+
+    /* hover only where hover exists, so touch screens don't get stuck states */
+    @media (hover: hover) {
+        .btn:hover {
+            background: var(--btn-hover);
+        }
+
+        #modal-btn:hover {
+            background: var(--btn-primary-hover);
+        }
+    }
+
+    /* The only non-user-triggered motion: food appears */
+    @keyframes food-pop {
+        from {
+            scale: 0;
+        }
+    }
+
+    @keyframes dialog-in {
+        from {
+            opacity: 0;
+            translate: 0 12px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+/* ---------- Responsive ---------- */
+@layer responsive {
+
+    /* phones and tablets: show d-pad, smaller cells */
+    @media (pointer: coarse) {
+        :root {
+            --cell: 24px;
+        }
+
+        .controls {
+            display: grid;
+        }
+    }
+
+    @media (max-width: 600px) {
+        main {
+            padding-inline: var(--space-md);
+        }
+
+        .infos {
+            gap: var(--space-sm);
+        }
+
+        .info {
+            padding: var(--space-sm);
+        }
+
+        .info dt {
+            font-size: 0.7rem;
+        }
+    }
+
+    /* short landscape phones: pull the title out of the way */
+    @media (max-height: 500px) {
+        .title {
+            display: none;
+        }
+    }
+}
