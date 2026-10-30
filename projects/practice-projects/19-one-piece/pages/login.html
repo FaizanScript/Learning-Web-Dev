@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../assets/favicon.png">
+    <link rel="stylesheet" href="../style.css">
+
+    <title>Set Sail</title>
+
+
+</head>
+
+<body class="login-body">
+
+    <main>
+
+        <section class="login-page">
+
+            <!-- Login Header -->
+
+            <div class="login-header">
+
+                <p class="section-subtitle">
+                    WELCOME BACK, PIRATE
+                </p>
+
+                <h1 class="login-title">
+                    SET SAIL
+                </h1>
+
+                <p class="login-description">
+                    Enter your crew credentials
+                    and continue your journey.
+                </p>
+
+            </div>
+
+
+            <!-- Login Form -->
+
+            <form class="login-form" novalidate>
+
+                <div class="form-group">
+
+                    <label for="login-email">
+                        Email
+                    </label>
+
+                    <input type="email" id="login-email" autocomplete="email" placeholder="Enter your email">
+
+                    <small class="form-error" id="login-email-error"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="login-password">
+                        Password
+                    </label>
+
+                    <input type="password" id="login-password" autocomplete="current-password"
+                        placeholder="Enter your password">
+
+                    <small class="form-error" id="login-password-error"></small>
+
+                </div>
+
+
+                <p class="login-error" id="login-error"></p>
+
+
+                <button type="submit" class="login-submit-btn">
+                    SET SAIL
+                </button>
+
+            </form>
+
+
+            <!-- Login Success -->
+
+            <div class="login-success">
+
+                <div class="success-icon">
+                    ⛵
+                </div>
+
+                <p class="section-subtitle">
+                    WELCOME BACK
+                </p>
+
+                <h1 class="success-title">
+                    AHOY,
+                    <span class="login-success-name"></span>
+                </h1>
+
+                <p class="success-message">
+                    Your ship is ready.
+                    The Grand Line awaits.
+                </p>
+
+                <div class="success-actions">
+
+                    <a href="crew.html" class="success-btn primary-btn">
+                        MEET THE CREW
+                    </a>
+
+                    <a href="../index.html" class="success-btn secondary-btn">
+                        RETURN HOME
+                    </a>
+
+                    <button class="success-btn logout-btn">
+                        LOG OUT
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/login.js"></script>
+
+</body>
+
+</html>

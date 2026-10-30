@@ -1,0 +1,2390 @@
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #eaeaea;
+    color: #1f1f1f;
+}
+
+.bg-img {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+
+    background-image: url("https://i.pinimg.com/1200x/b6/2e/39/b62e390b21b093e1c89a22b45ec0e928.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    z-index: -2;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+
+}
+
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 30px;
+    z-index: 1000;
+}
+
+
+/* ================================
+   NAVBAR CONTAINER
+================================ */
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    /* frosted grey */
+    background: rgba(235, 235, 235, 0.72);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.3);
+
+}
+
+
+/* ================================
+   LOGO
+================================ */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1c1c1c;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* ================================
+   NAV LINKS
+================================ */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-link {
+    position: relative;
+    padding: 9px 14px;
+    color: #3f3f3f;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    transition:
+        color 0.3s ease,
+        background 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #111111;
+    background: rgba(225, 225, 225, 0.45);
+}
+
+.nav-link.active {
+    color: #111111;
+    background: rgba(225, 225, 225, 0.55);
+}
+
+
+
+/* ================================
+   MENU TOGGLE
+================================ */
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #1c1c1c;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 786px) {
+
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .navbar-container {
+        padding: 12px 15px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+}
+
+
+/* ================================
+   HERO CONTENT
+================================ */
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+/* ================================
+   HERO SUBTITLE
+================================ */
+
+.hero-subtitle {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    /* color: rgba(25, 25, 25, 0.8); */
+    color: #ffffff;
+    text-shadow:
+        0 5px 20px rgba(8, 8, 8, 1);
+
+}
+
+
+/* ================================
+   HERO TITLE
+================================ */
+
+.hero-title {
+    margin-bottom: 30px;
+    font-size: clamp(50px, 7vw, 100px);
+    line-height: 0.95;
+    font-weight: 800;
+    color: #171717;
+    text-shadow:
+        0 3px 15px rgba(255, 255, 255, 0.5);
+}
+
+.hero-title span {
+    display: block;
+    text-align: center;
+}
+
+
+/* ================================
+   HERO DESCRIPTION
+================================ */
+
+.hero-description {
+    max-width: 500px;
+    margin: 0 auto 35px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.7;
+    /* color: #3f3f3f; */
+    color: #ffffff;
+    text-shadow:
+        0 5px 20px rgba(8, 8, 8, 1);
+
+}
+
+
+/* ================================
+   HERO BUTTONS
+================================ */
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+
+/* ================================
+   BUTTON BASE
+================================ */
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* ================================
+   PRIMARY BUTTON
+================================ */
+
+.primary-btn {
+    color: #ffffff;
+    background: rgba(25, 25, 25, 0.78);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(10, 10, 10, 0.9);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================================
+   SECONDARY BUTTON
+================================ */
+
+.secondary-btn {
+    color: #222222;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.secondary-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ================================
+   HERO ENTRANCE ANIMATION
+================================ */
+
+.hero-subtitle,
+.hero-title,
+.hero-description,
+.hero-buttons {
+    opacity: 0;
+
+    transform: translateY(100px);
+
+    animation: animate 1s ease-in-out 1 forwards;
+}
+
+
+/* Individual delays */
+
+.hero-subtitle {
+    animation-delay: 1s;
+}
+
+.hero-title {
+    animation-delay: 1.4s;
+}
+
+.hero-description {
+    animation-delay: 1.7s;
+}
+
+.hero-buttons {
+    animation-delay: 2s;
+}
+
+
+/* Animation */
+
+@keyframes animate {
+    from {
+        opacity: 0;
+
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding-top: 110px;
+    }
+
+    .hero-subtitle {
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+    .hero-title {
+        font-size: clamp(48px, 15vw, 72px);
+
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .hero-btn {
+        width: 100%;
+
+        max-width: 280px;
+    }
+}
+
+
+/* ================================
+   CREW PREVIEW
+================================ */
+
+.crew-preview {
+    min-height: 100vh;
+    padding: 100px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.crew-preview-header {
+    max-width: 650px;
+    margin-bottom: 55px;
+    text-align: center;
+}
+
+.section-subtitle {
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    /* color: rgba(25, 25, 25, 0.6); */
+    color: #ffffff;
+    text-shadow:
+        0 5px 20px rgba(8, 8, 8, 1);
+}
+
+.section-title {
+    margin-bottom: 16px;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1;
+    font-weight: 800;
+    color: #171717;
+}
+
+.section-description {
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.7;
+    /* color: rgba(25, 25, 25, 0.68); */
+    color: #ffffff;
+    text-shadow:
+        0 5px 20px rgba(8, 8, 8, 1);
+}
+
+
+/* ================================
+   CREW CARDS
+================================ */
+
+.crew-preview-cards {
+    width: 100%;
+    max-width: 950px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* ================================
+   CREW CARD
+================================ */
+
+.crew-card {
+    padding: 30px 25px;
+    text-align: center;
+    background: rgba(235, 235, 235, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    /* border: 1px solid rgba(255, 255, 255, 0.65); */
+    border-radius: 20px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.crew-card:hover {
+    transform: translateY(-8px);
+    background: rgba(245, 245, 245, 0.7);
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+
+/* ================================
+   CREW AVATAR
+================================ */
+
+.crew-avatar {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    background: rgba(255, 255, 255, 0.5);
+    /* border: 1px solid rgba(255, 255, 255, 0.7); */
+    border-radius: 50%;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ================================
+   CREW NAME
+================================ */
+
+.crew-name {
+    margin-bottom: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #171717;
+}
+
+
+
+/* ================================
+   CREW ROLE
+================================ */
+
+.crew-role {
+    margin-bottom: 18px;
+    /* font-size: 13px; */
+    color: rgba(25, 25, 25, 0.8);
+}
+
+
+/* ================================
+   BOUNTY
+================================ */
+
+.crew-bounty {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252525;
+}
+
+
+/* ================================
+   VIEW CREW BUTTON
+================================ */
+
+.crew-preview-action {
+    margin-top: 40px;
+}
+
+.crew-view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px;
+    color: #222222;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 12px;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.crew-view-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ================================
+   CREW SCROLL ANIMATION
+================================ */
+
+.crew-preview-header,
+.crew-card,
+.crew-preview-action {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+/* Active state added by JavaScript */
+
+.crew-preview.show .crew-preview-header {
+    animation: animate 1s ease-in-out forwards;
+    animation-delay: 0.1s;
+}
+
+.crew-preview.show .crew-card:nth-child(1) {
+    animation: animate 1s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+.crew-preview.show .crew-card:nth-child(2) {
+    animation: animate 1s ease-in-out forwards;
+    animation-delay: 0.3s;
+}
+
+.crew-preview.show .crew-card:nth-child(3) {
+    animation: animate 1s ease-in-out forwards;
+    animation-delay: 0.7s;
+}
+
+.crew-preview.show .crew-preview-action {
+    animation: animate 1s ease-in-out forwards;
+    animation-delay: 0.9s;
+}
+
+@keyframes animate {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .crew-preview {
+        padding: 80px 15px;
+    }
+
+    .crew-preview-cards {
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+    }
+
+}
+
+
+/* ================================
+   JOIN CREW CTA
+================================ */
+
+.join-cta {
+    min-height: 65vh;
+    padding: 100px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+/* ================================
+   CTA GLASS PANEL
+================================ */
+
+.join-cta-content {
+    width: 100%;
+    max-width: 900px;
+    padding: 80px 40px;
+    background: rgba(235, 235, 235, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    /* border: 1px solid rgba(255, 255, 255, 0.65); */
+    border-radius: 28px;
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   CTA BUTTON
+================================ */
+
+.join-cta-btn {
+    margin-top: 10px;
+}
+
+
+/* ================================
+   CTA SCROLL ANIMATION
+================================ */
+
+.join-cta-content {
+    opacity: 0;
+
+    transform: translateY(100px);
+}
+
+.join-cta.show .join-cta-content {
+    animation: animate 1s ease-in-out forwards;
+}
+
+
+/* ================================
+   JOURNEY SECTION
+================================ */
+
+.journey {
+    min-height: 80vh;
+    padding: 120px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ================================
+   JOURNEY HEADER
+================================ */
+
+.journey-header {
+    max-width: 650px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+
+/* ================================
+   JOURNEY STEPS
+================================ */
+
+.journey-steps {
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* ================================
+   JOURNEY CARD
+================================ */
+
+.journey-step {
+    position: relative;
+    padding: 35px 28px;
+    text-align: center;
+    background: rgba(235, 235, 235, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    /* border: 1px solid rgba(255, 255, 255, 0.65); */
+    border-radius: 20px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.journey-step:hover {
+    transform: translateY(-8px);
+    background: rgba(245, 245, 245, 0.7);
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.13);
+}
+
+
+/* ================================
+   ICON
+================================ */
+
+.journey-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    /* border: 1px solid rgba(255, 255, 255, 0.7); */
+    border-radius: 50%;
+}
+
+
+
+/* ================================
+   TITLE
+================================ */
+
+.journey-step h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #171717;
+}
+
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.journey-step p {
+    font-size: 16px;
+    line-height: 1.7;
+
+    /* color: rgba(25, 25, 25, 0.62); */
+    color: #ffffff;
+}
+
+
+/* ================================
+   SCROLL ANIMATION
+================================ */
+
+.journey-header,
+.journey-step {
+    opacity: 0;
+
+    transform: translateY(100px);
+}
+
+.journey.show .journey-header {
+    animation: animate 1s ease-in-out forwards;
+
+    animation-delay: 0.1s;
+}
+
+.journey.show .journey-step:nth-child(1) {
+    animation: animate 1s ease-in-out forwards;
+
+    animation-delay: 0.3s;
+}
+
+.journey.show .journey-step:nth-child(2) {
+    animation: animate 1s ease-in-out forwards;
+
+    animation-delay: 0.5s;
+}
+
+.journey.show .journey-step:nth-child(3) {
+    animation: animate 1s ease-in-out forwards;
+
+    animation-delay: 0.7s;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .journey {
+        padding: 100px 20px;
+    }
+
+    .journey-steps {
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+    }
+
+}
+
+
+
+/* ================================
+   JOIN PAGE
+================================ */
+
+.join-page {
+    min-height: 100vh;
+    padding: 150px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ================================
+   JOIN HEADER
+================================ */
+
+.join-page-header {
+    max-width: 650px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.join-page-title {
+    margin-bottom: 18px;
+    font-size: clamp(45px, 7vw, 75px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: #171717;
+}
+
+.join-page-description {
+    font-size: 18px;
+    line-height: 1.7;
+    /* color: rgba(25, 25, 25, 0.65); */
+    color: #ffffff;
+    text-shadow: rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   PROFILE UPLOAD
+================================ */
+
+.profile-upload {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-preview {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.profile-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Upload button */
+
+.upload-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    color: #252525;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    cursor: pointer;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.upload-btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+
+/* Upload hint */
+
+.upload-hint {
+    margin-top: 9px;
+    font-size: 12px;
+    color: rgba(25, 25, 25, 0.5);
+}
+
+
+/* ================================
+   JOIN FORM
+================================ */
+
+.join-form {
+    width: 100%;
+    max-width: 560px;
+    padding: 40px;
+    background: rgba(235, 235, 235, 0.6);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    /* border: 1px solid rgba(255, 255, 255, 0.7); */
+    border-radius: 24px;
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================
+   BOUNTY
+================================ */
+
+.bounty-display {
+    margin: 5px 0 25px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 14px;
+}
+
+.bounty-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bounty-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: rgba(25, 25, 25, 0.55);
+}
+
+.bounty-value {
+    font-size: 17px;
+    font-weight: 800;
+    color: #171717;
+}
+
+.bounty-note {
+    display: block;
+    margin-top: 7px;
+    font-size: 11px;
+    color: rgba(25, 25, 25, 0.45);
+}
+
+
+/* ================================
+   FORM GROUP
+================================ */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #252525;
+}
+
+
+/* ================================
+   INPUTS
+================================ */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    color: #202020;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    border: 1px solid rgba(255, 255, 255, 0.75);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 100px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(30, 30, 30, 0.45);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: rgba(255, 255, 255, 0.65);
+
+    border-color: rgba(60, 60, 60, 0.35);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ================================
+   SUBMIT BUTTON
+================================ */
+
+.join-submit-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 14px 20px;
+
+    color: #ffffff;
+
+    background: rgba(25, 25, 25, 0.82);
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+    border-radius: 12px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.join-submit-btn:hover {
+    transform: translateY(-3px);
+
+    background: rgba(10, 10, 10, 0.92);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .join-page {
+        padding: 120px 15px 70px;
+    }
+
+    .join-form {
+        padding: 28px 20px;
+
+        border-radius: 20px;
+    }
+
+}
+
+
+/* ================================
+   FIX BUTTON CLICKING
+================================ */
+
+.hero,
+.join-cta {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-buttons,
+.join-cta-content {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-btn {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+
+/* ================================
+   FORM VALIDATION
+================================ */
+
+.form-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #b3261e;
+}
+
+
+/* Invalid input */
+
+.form-group input.invalid,
+.form-group select.invalid,
+.form-group textarea.invalid {
+    border-color: rgba(179, 38, 30, 0.55);
+    background: rgba(255, 235, 235, 0.45);
+}
+
+
+/* Valid input */
+
+.form-group input.valid,
+.form-group select.valid,
+.form-group textarea.valid {
+    border-color: rgba(40, 120, 70, 0.45);
+}
+
+
+/* ================================
+   CREW PAGE BACKGROUND
+================================ */
+
+.crew-body {
+    background-image: none;
+    background-color: #eaeaea;
+}
+
+
+
+/* ================================
+   CREW PAGE
+================================ */
+
+.crew-page {
+    min-height: 100vh;
+    padding: 150px 30px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ================================
+   CREW HEADER
+================================ */
+
+.crew-page-header {
+    max-width: 700px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.crew-page-title {
+    margin-bottom: 16px;
+    font-size: clamp(45px, 7vw, 75px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: #171717;
+}
+
+.crew-page-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(25, 25, 25, 0.65);
+}
+
+
+/* ================================
+   CREW CAROUSEL
+================================ */
+
+.crew-carousel {
+    width: 100%;
+    max-width: 1200px;
+    padding: 18px;
+    background: rgba(235, 235, 235, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 28px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   MAIN CHARACTER
+================================ */
+
+.crew-main {
+    position: relative;
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+
+/* ================================
+   MAIN IMAGE
+================================ */
+
+.crew-main-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition:
+        transform 0.6s ease;
+}
+
+
+/* ================================
+   IMAGE OVERLAY
+================================ */
+
+.crew-main-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg,
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.38) 40%,
+            rgba(0, 0, 0, 0.08) 75%,
+            rgba(0, 0, 0, 0.15) 100%);
+}
+
+
+/* ================================
+   MAIN INFORMATION
+================================ */
+
+.crew-main-info {
+    position: absolute;
+    left: 55px;
+    bottom: 55px;
+    width: 450px;
+    color: #ffffff;
+}
+
+.crew-main-role {
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    opacity: 0.75;
+}
+
+.crew-main-name {
+    margin-bottom: 15px;
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 0.95;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.crew-main-description {
+    max-width: 430px;
+    margin-bottom: 22px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* ================================
+   BOUNTY
+================================ */
+
+.crew-main-bounty {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.crew-main-bounty span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.65;
+}
+
+.crew-main-bounty strong {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* ================================
+   THUMBNAILS
+================================ */
+
+.crew-thumbnails {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 5px 5px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.crew-thumbnails::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ================================
+   THUMBNAIL
+================================ */
+
+.crew-thumbnail {
+    position: relative;
+    flex: 0 0 90px;
+    height: 100px;
+    padding: 0;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0.55;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.crew-thumbnail:hover {
+    opacity: 0.85;
+    transform: translateY(-3px);
+}
+
+.crew-thumbnail.active {
+    opacity: 1;
+    border-color: rgba(40, 40, 40, 0.8);
+}
+
+
+/* ================================
+   THUMBNAIL IMAGE
+================================ */
+
+.crew-thumbnail img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* ================================
+   THUMBNAIL NAME
+================================ */
+
+.crew-thumbnail span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 4px 7px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background:
+        linear-gradient(transparent,
+            rgba(0, 0, 0, 0.7));
+}
+
+
+/* ================================
+   CONTROLS
+================================ */
+
+.crew-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 18px 0 5px;
+}
+
+
+/* ================================
+   ARROWS
+================================ */
+
+.crew-arrow {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222222;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.crew-arrow:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+
+/* ================================
+   DOTS
+================================ */
+
+.crew-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.crew-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(30, 30, 30, 0.25);
+    transition:
+        width 0.3s ease,
+        background 0.3s ease;
+}
+
+.crew-dot.active {
+    width: 20px;
+    border-radius: 10px;
+    background: rgba(30, 30, 30, 0.75);
+}
+
+/* ================================
+   CREW RESPONSIVE
+================================ */
+
+@media (max-width: 800px) {
+
+    .crew-page {
+        padding: 120px 15px 60px;
+    }
+
+    .crew-carousel {
+        padding: 10px;
+
+        border-radius: 20px;
+    }
+
+    .crew-main {
+        height: 550px;
+
+        border-radius: 16px;
+    }
+
+    .crew-main-info {
+        left: 25px;
+        right: 25px;
+        bottom: 30px;
+
+        width: auto;
+    }
+
+    .crew-main-name {
+        font-size: 42px;
+    }
+
+    .crew-main-description {
+        font-size: 13px;
+    }
+
+    .crew-thumbnail {
+        flex-basis: 75px;
+
+        height: 85px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .crew-main {
+        height: 500px;
+    }
+
+    .crew-main-info {
+        left: 20px;
+        bottom: 25px;
+    }
+
+    .crew-main-name {
+        font-size: 34px;
+    }
+
+    .crew-main-description {
+        max-width: 100%;
+    }
+
+    .crew-controls {
+        gap: 15px;
+    }
+
+}
+
+
+/* ================================
+   CREW PAGE ENTRANCE
+================================ */
+
+.crew-animate-subtitle,
+.crew-animate-title,
+.crew-animate-description,
+.crew-carousel {
+    opacity: 0;
+    transform: translateY(100px);
+    animation: animate 1s ease-in-out forwards;
+}
+
+
+/* Subtitle */
+
+.crew-animate-subtitle {
+    animation-delay: 0.2s;
+}
+
+
+/* Title */
+
+.crew-animate-title {
+    animation-delay: 0.4s;
+}
+
+
+/* Description */
+
+.crew-animate-description {
+    animation-delay: 0.7s;
+}
+
+
+/* Carousel */
+
+.crew-carousel {
+    animation-delay: 1s;
+}
+
+@keyframes animate {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ================================
+   CREW SLIDE TRANSITION
+================================ */
+
+.crew-main-image,
+.crew-main-info {
+    transition:
+        opacity 0.30s ease,
+        transform 0.30s ease;
+}
+
+/* Leaving state */
+
+/* .crew-main.slide-out .crew-main-image {
+    opacity: 0;
+    transform: scale(1.03) translateX(-30px);
+}
+
+.crew-main.slide-out .crew-main-info {
+    opacity: 0;
+    transform: translateY(20px);
+} */
+
+/* Entering state */
+
+.crew-main.slide-in .crew-main-image {
+    animation: crewImageIn 0.30s ease forwards;
+}
+
+.crew-main.slide-in .crew-main-info {
+    animation: crewInfoIn 1s ease forwards;
+}
+
+
+@keyframes crewImageIn {
+
+    from {
+        opacity: 0;
+        transform: scale(1.04) translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+
+}
+
+
+@keyframes crewInfoIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================================
+   GRAND LINE MEMBERS
+================================ */
+
+.grand-line-members {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 100px;
+    padding-bottom: 60px;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.grand-line-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.grand-line-title {
+    margin-bottom: 15px;
+    font-size: clamp(35px, 5vw, 55px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #171717;
+}
+
+.grand-line-description {
+    max-width: 550px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(25, 25, 25, 0.6);
+}
+
+
+/* ================================
+   MEMBER GRID
+================================ */
+
+.grand-line-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* ================================
+   MEMBER CARD
+================================ */
+
+.grand-member-card {
+    padding: 20px;
+    background: rgba(235, 235, 235, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.grand-member-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.13);
+}
+
+
+/* ================================
+   PROFILE IMAGE
+================================ */
+
+.grand-member-image {
+    width: 100%;
+    height: 260px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.grand-member-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* ================================
+   MEMBER NAME
+================================ */
+
+.grand-member-name {
+    margin-bottom: 5px;
+    font-size: 21px;
+    font-weight: 800;
+    color: #171717;
+}
+
+
+/* ================================
+   MEMBER ROLE
+================================ */
+
+.grand-member-role {
+    margin-bottom: 15px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(25, 25, 25, 0.5);
+}
+
+
+/* ================================
+   DREAM
+================================ */
+
+.grand-member-dream {
+    min-height: 45px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(25, 25, 25, 0.65);
+}
+
+
+/* ================================
+   BOUNTY
+================================ */
+
+.grand-member-bounty {
+    padding-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.grand-member-bounty span {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(25, 25, 25, 0.45);
+}
+
+.grand-member-bounty strong {
+    font-size: 15px;
+    color: #171717;
+}
+
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.grand-line-empty {
+    grid-column: 1 / -1;
+    padding: 50px 20px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(25, 25, 25, 0.55);
+    background: rgba(235, 235, 235, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 18px;
+}
+
+@media (max-width: 850px) {
+
+    .grand-line-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .grand-line-members {
+        margin-top: 70px;
+    }
+
+    .grand-line-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+
+        margin: 0 auto;
+    }
+
+}
+
+
+/* ================================
+   JOIN SUCCESS
+================================ */
+
+.join-success {
+    width: 100%;
+    max-width: 650px;
+    padding: 55px 40px;
+    display: none;
+    text-align: center;
+    background: rgba(235, 235, 235, 0.6);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 24px;
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   SUCCESS ICON
+================================ */
+
+.success-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+
+/* ================================
+   SUCCESS TITLE
+================================ */
+
+.success-title {
+    margin-bottom: 18px;
+    font-size: clamp(38px, 6vw, 60px);
+    line-height: 0.95;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #171717;
+}
+
+.success-title span {
+    display: block;
+}
+
+
+/* ================================
+   SUCCESS MESSAGE
+================================ */
+
+.success-message {
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(25, 25, 25, 0.65);
+}
+
+
+/* ================================
+   SUCCESS BOUNTY
+================================ */
+
+.success-bounty {
+    margin-bottom: 35px;
+    padding: 18px 25px;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 14px;
+}
+
+.success-bounty span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(25, 25, 25, 0.5);
+}
+
+.success-bounty strong {
+    font-size: 22px;
+    color: #171717;
+}
+
+
+/* ================================
+   SUCCESS ACTIONS
+================================ */
+
+.success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.success-btn {
+    min-width: 150px;
+}
+
+
+/* ================================
+   SUCCESS ANIMATION
+================================ */
+
+.join-success.show {
+    animation: animate 1s ease-in-out forwards;
+}
+
+
+/* ================================
+   LOGIN PAGE
+================================ */
+
+.login-body {
+    background-image: none;
+    background-color: #e8e8e8;
+}
+
+
+.login-page {
+    min-height: 100vh;
+    padding: 150px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ================================
+   LOGIN HEADER
+================================ */
+
+.login-header {
+    max-width: 650px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+.login-title {
+    margin-bottom: 18px;
+    font-size: clamp(50px, 7vw, 75px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: #171717;
+}
+
+
+.login-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(25, 25, 25, 0.65);
+}
+
+
+/* ================================
+   LOGIN FORM
+================================ */
+
+.login-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    background: rgba(235, 235, 235, 0.6);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 24px;
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   LOGIN ERROR
+================================ */
+
+.login-error {
+    min-height: 18px;
+    margin: 5px 0 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #b3261e;
+}
+
+
+/* ================================
+   LOGIN BUTTON
+================================ */
+
+.login-submit-btn {
+    width: 100%;
+    padding: 14px 20px;
+    color: #ffffff;
+    background: rgba(25, 25, 25, 0.82);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.login-submit-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(10, 10, 10, 0.92);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ================================
+   LOGIN SUCCESS
+================================ */
+
+.login-success {
+    width: 100%;
+    max-width: 650px;
+    padding: 55px 40px;
+    display: none;
+    opacity: 0;
+    transform: translateY(100px);
+    text-align: center;
+    background: rgba(235, 235, 235, 0.6);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 24px;
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-success.active {
+    display: block;
+    animation: animate 1s ease-in-out forwards;
+}
+
+
+.success-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn {
+    color: #ffffff;
+    background: rgba(180, 40, 40, 0.85);
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(160, 20, 20, 0.95);
+}
+
+
+/* ================================
+   PIRATE STATUS
+================================ */
+
+.pirate-status {
+    display: none;
+    padding: 100px 20px;
+}
+
+.pirate-status.show {
+    display: block;
+    animation: animate 1s ease-in-out forwards;
+}
+
+.pirate-status-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    background: rgba(235, 235, 235, 0.6);
+    backdrop-filter: blur(18px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.pirate-status-name {
+    margin: 15px 0;
+    font-size: 42px;
+    font-weight: 900;
+}
+
+.pirate-status-details {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 25px 0;
+}
+
+.pirate-status-details span {
+    display: block;
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 6px;
+}
+
+.pirate-status-dream {
+    margin-bottom: 25px;
+    opacity: 0.7;
+}
+
+.pirate-status-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+
+/* =================================
+   SHARED BUTTON STYLES
+================================= */
+
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+@media (max-width: 768px) {
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 80px;
+        right: 20px;
+
+        flex-direction: column;
+        gap: 1rem;
+
+        padding: 1rem;
+
+        background: rgba(0, 0, 0, 0.95);
+
+        border-radius: 12px;
+    }
+
+    .nav-links.show-menu {
+        display: flex;
+    }
+
+}

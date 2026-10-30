@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../assets/favicon.png">
+    <link rel="stylesheet" href="../style.css">
+
+    <title>Join the Crew</title>
+
+</head>
+
+<body>
+
+    <main>
+
+        <section class="join-page">
+
+            <div class="join-page-header">
+
+                <p class="section-subtitle">
+                    YOUR JOURNEY BEGINS
+                </p>
+
+                <h1 class="join-page-title">
+                    JOIN THE CREW
+                </h1>
+
+                <p class="join-page-description">
+                    Create your pirate identity and
+                    become part of the crew.
+                </p>
+
+            </div>
+
+
+            <form class="join-form" novalidate>
+
+                <!-- Profile Picture -->
+                <div class="profile-upload">
+
+                    <div class="profile-preview">
+                        <span>☠</span>
+                    </div>
+
+                    <label for="profile-picture" class="upload-btn">
+                        CHOOSE PROFILE
+                    </label>
+
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*" hidden>
+
+                    <p class="upload-hint">
+                        Choose a picture for your crew profile.
+                    </p>
+
+                    <small class="form-error" id="profile-picture-error"></small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <!-- name -->
+                    <label for="pirate-name">
+                        Pirate Name
+                    </label>
+
+                    <input type="text" id="pirate-name" name="pirate-name" placeholder="Enter your pirate name">
+
+                    <small class="form-error" id="pirate-name-error"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+
+                    <small class="form-error" id="email-error"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input type="password" id="password" name="password" autocomplete="new-password"
+                        placeholder="Create a password">
+
+                    <small class="form-error" id="password-error"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="role">
+                        Crew Role
+                    </label>
+
+                    <select id="role" name="role">
+
+                        <option value="">
+                            Choose your role
+                        </option>
+
+                        <option value="Captain">
+                            Captain
+                        </option>
+
+                        <option value="Swordsman">
+                            Swordsman
+                        </option>
+
+                        <option value="Navigator">
+                            Navigator
+                        </option>
+
+                        <option value="Sniper">
+                            Sniper
+                        </option>
+
+                        <option value="Cook">
+                            Cook
+                        </option>
+
+                        <option value="Doctor">
+                            Doctor
+                        </option>
+
+                        <option value="Shipwright">
+                            Shipwright
+                        </option>
+
+                        <option value="Archaeologist">
+                            Archaeologist
+                        </option>
+
+                        <option value="Musician">
+                            Musician
+                        </option>
+
+                        <option value="Helmsman">
+                            Helmsman
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                    <small class="form-error" id="role-error"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="dream">
+                        Your Dream
+                    </label>
+
+                    <textarea id="dream" name="dream" rows="3" placeholder="What is your dream?"></textarea>
+
+                    <small class="form-error" id="dream-error"></small>
+
+                </div>
+
+                <!-- bounty -->
+                <div class="bounty-display">
+
+                    <div class="bounty-info">
+
+                        <span class="bounty-label">STARTING BOUNTY</span>
+
+                        <span class="bounty-value"> ฿ 1,000,000</span>
+                    </div>
+                    <span class="bounty-note">Your bounty will grow with your journey</span>
+                </div>
+
+
+                <button type="submit" class="join-submit-btn">
+                    ☠ JOIN THE CREW
+                </button>
+
+            </form>
+
+            <!-- Join Success -->
+
+            <div class="join-success">
+
+                <div class="success-icon">
+                    ☠
+                </div>
+
+                <p class="section-subtitle">
+                    WELCOME ABOARD
+                </p>
+
+                <h1 class="success-title">
+                    EXPLORE THE WORLD OF
+                    <span>ONE PIECE</span>
+                </h1>
+
+                <p class="success-message">
+                    Your journey has officially begun,
+                    <strong class="success-name"></strong>.
+                </p>
+
+
+                <div class="success-bounty">
+
+                    <span>
+                        STARTING BOUNTY
+                    </span>
+
+                    <strong>
+                        ฿ 1,000,000
+                    </strong>
+
+                </div>
+
+
+                <div class="success-actions">
+
+                    <a href="../pages/login.html" class="success-btn primary-btn">
+                        SET SAIL
+                    </a>
+
+                    <a href="crew.html" class="success-btn secondary-btn">
+                        MEET THE CREW
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
