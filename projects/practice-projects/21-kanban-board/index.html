@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
 
     <main>
         <nav>
             <div class="left">kanban</div>
-            <div class="right"><button>Add new Task</button></div>
+            <div class="right"><button id="toggle-modal">Add new Task</button></div>
         </nav>
 
         <section class="board">
@@ -48,6 +50,16 @@
 
         </section>
     </main>
-    
+
+    <div class="modal add-new-task">
+        <div class="bg"></div>
+        <div class="center">
+            <input id="task-title-input" type="text" placeholder="Task Title">
+            <textarea id="task-desc-input" placeholder="Task Description"></textarea>
+            <button id="add-new-task" class="add-new-task-btn">Add Task</button>
+        </div>
+    </div>
+
 </body>
+
 </html>
