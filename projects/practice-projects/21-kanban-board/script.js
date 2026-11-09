@@ -29,6 +29,12 @@ function addtask(title, desc, column) {
         dragElement = div;
     })
 
+    const deleteButton = div.querySelector("button");
+    deleteButton.addEventListener("click", () => {
+        div.remove();
+        updateTaskCount();
+    })
+
     return div;
 }
 
@@ -125,6 +131,9 @@ addTaskButton.addEventListener("click", () => {
     updateTaskCount();
 
     modal.classList.remove("active");
+
+    document.querySelector("#task-title-input").value = "";
+    document.querySelector("#task-desc-input").value = "";
 
 })
 
