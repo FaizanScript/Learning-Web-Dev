@@ -55,6 +55,8 @@ nav {
     padding: var(--nav-padding);
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
 }
 
 nav button {
@@ -79,6 +81,7 @@ section {
 section .task-column {
     background-color: var(--bg-button-color);
     flex-grow: 1;
+    width: 100%;
     padding: var(--padding-m);
     display: flex;
     flex-direction: column;
