@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple kanban board to organize tasks into To Do, In Progress and Done.">
     <title>Kanban Board</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -11,47 +12,62 @@
 
 <body>
 
+    <header class="topbar">
+        <h1 class="logo">Kanban</h1>
+        <button id="toggle-modal" type="button" aria-haspopup="dialog" aria-controls="task-modal">
+            Add new task
+        </button>
+    </header>
+
     <main>
-        <nav>
-            <div class="left">kanban</div>
-            <div class="right"><button id="toggle-modal">Add new Task</button></div>
-        </nav>
+        <section class="board" aria-label="Task board">
 
-        <section class="board">
+            <section id="todo" class="task-column" aria-labelledby="todo-title">
+                <header class="heading">
+                    <h2 id="todo-title">To Do</h2>
+                    <span class="count" aria-label="Tasks in To Do">0</span>
+                </header>
+                <div class="task-list" data-status="todo"></div>
+            </section>
 
-            <div id="todo" class="task-column">
+            <section id="progress" class="task-column" aria-labelledby="progress-title">
+                <header class="heading">
+                    <h2 id="progress-title">In Progress</h2>
+                    <span class="count" aria-label="Tasks in In Progress">0</span>
+                </header>
+                <div class="task-list" data-status="progress"></div>
+            </section>
 
-                <div class="heading">
-                    <div class="left">To Do</div>
-                    <div class="right">Count</div>
-                </div>
-
-            </div>
-
-            <div id="progress" class="task-column">
-                <div class="heading">
-                    <div class="left">In Progress</div>
-                    <div class="right">Count</div>
-                </div>
-            </div>
-
-            <div id="done" class="task-column">
-                <div class="heading">
-                    <div class="left">Done</div>
-                    <div class="right">Count</div>
-                </div>
-            </div>
+            <section id="done" class="task-column" aria-labelledby="done-title">
+                <header class="heading">
+                    <h2 id="done-title">Done</h2>
+                    <span class="count" aria-label="Tasks in Done">0</span>
+                </header>
+                <div class="task-list" data-status="done"></div>
+            </section>
 
         </section>
     </main>
 
-    <div class="modal add-new-task">
+    <div id="task-modal" class="modal add-new-task" role="dialog" aria-modal="true"
+        aria-labelledby="modal-title" hidden>
         <div class="bg"></div>
-        <div class="center">
-            <input id="task-title-input" type="text" placeholder="Task Title">
-            <textarea id="task-desc-input" placeholder="Task Description"></textarea>
-            <button id="add-new-task" class="add-new-task-btn">Add Task</button>
-        </div>
+        <form id="task-form" class="center">
+            <h2 id="modal-title">New task</h2>
+
+            <label for="task-title-input">Title</label>
+            <input id="task-title-input" name="title" type="text" placeholder="e.g. Fix login bug"
+                maxlength="80" required autocomplete="off">
+
+            <label for="task-desc-input">Description</label>
+            <textarea id="task-desc-input" name="description" rows="4"
+                placeholder="Add any details (optional)"></textarea>
+
+            <div class="actions">
+                <button id="cancel-task" type="button">Cancel</button>
+                <button id="add-new-task" class="add-new-task-btn" type="submit">Add task</button>
+            </div>
+        </form>
     </div>
 
 </body>
