@@ -1,180 +1,337 @@
-* {
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
-    height: 100%;
-    width: 100%;
-}
-
-html {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
+/* ---------- Design tokens ---------- */
 :root {
+    /* Colors */
+    --color-page: #f4f5f7;
+    --color-surface: #ffffff;
+    --color-column: #ebecf0;
+    --color-border: #dfe1e6;
+    --color-text: #172b4d;
+    --color-text-muted: #5e6c84;
+    --color-primary: #0052cc;
+    --color-primary-hover: #0747a6;
+    --color-danger: #c9372c;
+    --color-danger-hover: #a52a20;
+    --color-overlay: rgba(9, 30, 66, 0.54);
 
-    --bg-color: #000000;
-    --bg-button-color: #1a1a1a;
-    --bg-task-color: #2a2a2a;
-    --primary-text-color: #f4f4f4;
-    --delete-color: #ff4d4d;
+    /* Spacing scale */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
 
-    /* padding variables*/
-    --nav-padding: 15px 30px;
-    --section-padding: 15px 30px;
-    --padding-s: 5px;
-    --padding-m: 10px;
-    --padding-l: 15px;
-    --padding-xl: 20px;
-    --padding-xxl: 30px;
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
 
-    /* border radius variables */
-    --border-radius-s: 5px;
-    --border-radius-m: 10px;
-    --border-radius-l: 15px;
-    --border-radius-xl: 20px;
-    --border-radius-xxl: 30px;
-    
+    /* Elevation */
+    --shadow-card: 0 1px 2px rgba(9, 30, 66, 0.25);
+    --shadow-modal: 0 8px 24px rgba(9, 30, 66, 0.3);
+
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+html {
+    font-family: var(--font-body);
+    font-size: 100%;
+    line-height: 1.5;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--primary-text-color);
-}
-
-main {
-    height: 100%;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
+    background-color: var(--color-page);
+    color: var(--color-text);
 }
 
-nav {
-    padding: var(--nav-padding);
-    display: flex;
-    justify-content: space-between;
+button,
+input,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Keep a visible focus ring for keyboard users */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
     position: sticky;
     top: 0;
-}
-
-nav button {
-    background-color: var(--bg-button-color);
-    border: none;
-    outline: none;
-    color: var(--primary-text-color);
-    padding: var(--padding-m) var(--padding-l);
-    cursor: pointer;
-    border-radius: var(--border-radius-m);
-
-}
-
-section {
-    padding: var(--section-padding);
-    display: flex;
-    justify-content: space-between;
-    flex-grow: 1;
-    gap: 12px;
-}
-
-section .task-column {
-    background-color: var(--bg-button-color);
-    flex-grow: 1;
-    width: 100%;
-    padding: var(--padding-m);
-    display: flex;
-    flex-direction: column;
-    gap: var(--padding-m);
-    border-radius: var(--border-radius-m);
-    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-section .task-column.hover-over {
-    border: 2px dashed var(--primary-text-color);
-    scale: 1.05;
-}
-
-section .task-column .heading {
-    width: 100%;
+    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: var(--space-3) var(--space-5);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
 }
 
-section .task-column .task{
-    background-color: var(--bg-task-color);
-    padding: var(--padding-m);
-    border-radius: var(--border-radius-m);
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.topbar button {
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+}
+
+.topbar button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* ---------- Board ---------- */
+main {
+    flex: 1;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding: var(--space-5);
+    min-height: 100%;
+}
+
+.task-column {
     display: flex;
     flex-direction: column;
-    gap: var(--padding-s);
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background-color: var(--color-column);
+    border-radius: var(--radius-md);
+    transition: background-color 0.15s ease, outline-color 0.15s ease;
+}
+
+/* Drag-over state: no border, no scaling, so nothing shifts on the page */
+.task-column.hover-over {
+    background-color: #dbe4f3;
+    outline: 2px dashed var(--color-primary);
+    outline-offset: -2px;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-1) var(--space-1) 0;
+}
+
+.heading h2 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.count {
+    min-width: 1.5rem;
+    padding: 0 var(--space-2);
+    border-radius: 999px;
+    background-color: var(--color-border);
+    color: var(--color-text);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Gives an empty column room to receive a dropped task */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+    min-height: 4rem;
+}
+
+/* ---------- Task card ---------- */
+.task {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-card);
     cursor: grab;
-   
+    overflow-wrap: anywhere;
 }
 
-section .task-column .task button {
+.task:active {
+    cursor: grabbing;
+}
+
+.task.dragging {
+    opacity: 0.5;
+}
+
+.task h1,
+.task h2,
+.task h3,
+.task h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.task p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.task button {
     align-self: flex-end;
-    cursor: pointer;
-    padding: var(--padding-s) var(--border-radius-m);
+    padding: var(--space-1) var(--space-3);
     border: none;
-    outline: none;
-    border-radius: var(--border-radius-s);
-    background-color: var(--delete-color);
-    color: var(--primary-text-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-danger);
+    color: #ffffff;
+    font-size: 0.8125rem;
+    transition: background-color 0.15s ease;
 }
 
+.task button:hover {
+    background-color: var(--color-danger-hover);
+}
+
+/* ---------- Modal ---------- */
 .modal {
     position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
+    inset: 0;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    display: none;
+    padding: var(--space-4);
 }
 
-.modal.active{
-    display: flex;
+/* display: flex above would override [hidden], so restore it explicitly */
+.modal[hidden] {
+    display: none;
 }
 
 .modal .bg {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(61, 61, 61, 0.404);
-    backdrop-filter: blur(5px);
+    inset: 0;
+    background-color: var(--color-overlay);
 }
 
-.modal .center{
-    background-color: var(--bg-button-color);
-    padding: var(--padding-xxl);
-    border-radius: var(--border-radius-m);
+.modal .center {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--padding-m);
-    z-index: 10;
+    gap: var(--space-2);
+    width: min(28rem, 100%);
+    padding: var(--space-5);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-modal);
 }
 
-.modal .center input, .modal .center textarea, .modal .center select {
-    background-color: var(--bg-task-color);
-    border: none;
-    outline: none;
-    color: var(--primary-text-color);
-    padding: var(--padding-m);
-    border-radius: var(--border-radius-s);
+.modal h2 {
+    margin-bottom: var(--space-2);
+    font-size: 1.25rem;
 }
 
-.modal .center button {
-    background-color: green;
+.modal label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.modal input,
+.modal textarea {
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-2);
+    background-color: var(--color-page);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+}
+
+.modal textarea {
+    resize: vertical;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+    background-color: var(--color-surface);
+    border-color: var(--color-primary);
+    outline: 1px solid var(--color-primary);
+    outline-offset: 0;
+}
+
+.modal .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.modal .actions button {
+    padding: var(--space-2) var(--space-4);
     border: none;
-    outline: none;
-    color: var(--primary-text-color);
-    padding: var(--padding-m) var(--padding-l);
-    cursor: pointer;
-    border-radius: var(--border-radius-m);
-    width: fit-content;
-    align-self: center;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+}
+
+#cancel-task {
+    background-color: transparent;
+    color: var(--color-text-muted);
+}
+
+#cancel-task:hover {
+    background-color: var(--color-column);
+}
+
+.add-new-task-btn {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.add-new-task-btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+    .board {
+        grid-template-columns: 1fr;
+        padding: var(--space-4);
+    }
+
+    .topbar {
+        padding: var(--space-3) var(--space-4);
+    }
+}
+
+/* ---------- Respect reduced-motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
 }
