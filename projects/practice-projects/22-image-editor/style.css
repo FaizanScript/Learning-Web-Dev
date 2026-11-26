@@ -130,3 +130,14 @@ main section .right .filter input::-webkit-slider-thumb {
     background-color: red;
     margin-top: -8.5px;
 }
+
+canvas{
+    max-width: 90%;
+    max-height: 80vh;
+}
+
+.presets{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gutter-md);
+}
