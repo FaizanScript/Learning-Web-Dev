@@ -1,17 +1,38 @@
-:root{
+/*
+  Theme: neutral grey surround + one film-box yellow.
+  Photographers edit against neutral grey on purpose: a coloured UI shifts how
+  you judge the colours in your photo. So every surface here is a true grey,
+  and the only hue in the whole interface is the yellow accent.
+*/
+:root {
+    color-scheme: dark;
 
-    /* bg colors */
-    --bg-primary-color: rgb(17, 17, 17);
-    --bg-secondary-color: rgb(34, 34, 34);
-    --bg-active-color: rgb(233, 233, 233);
-    --bg-danger-color: rgb(200, 50, 50);
-    --bg-success-color: rgb(50, 200, 50);
+    /* surfaces (neutral greys, no blue/warm tint) */
+    --bg-primary-color: rgb(38, 38, 38);     /* page */
+    --bg-secondary-color: rgb(48, 48, 48);   /* panels */
+    --bg-stage-color: rgb(28, 28, 28);       /* behind the photo */
+    --bg-raised-color: rgb(62, 62, 62);      /* buttons, chips */
+    --bg-raised-hover-color: rgb(76, 76, 76);
+    --bg-active-color: rgb(245, 184, 0);     /* accent */
+    --bg-danger-color: rgb(217, 83, 79);
+    --bg-success-color: rgb(245, 184, 0);
 
-    /* text colors */
-    --text-primary-color: rgb(225, 255, 255);
-    --text-secondary-color: rgb(200, 200, 200);
-    --text-tertiary-color: rgb(150, 150, 150);
-    --text-active-color: rgb(24, 24, 24);
+    /* lines */
+    --line-color: rgb(70, 70, 70);
+    --line-strong-color: rgb(96, 96, 96);
+
+    /* text */
+    --text-primary-color: rgb(236, 236, 236);
+    --text-secondary-color: rgb(184, 184, 184);
+    --text-tertiary-color: rgb(138, 138, 138);
+    --text-active-color: rgb(26, 20, 0);     /* text on the accent */
+
+    /* accent */
+    --accent-color: var(--bg-active-color);
+    --focus-ring: 0 0 0 2px var(--bg-primary-color), 0 0 0 4px var(--accent-color);
+
+    /* type */
+    --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
     /* paddings */
     --padding-sm: 0.5rem;
@@ -34,18 +55,17 @@
     --gutter-xl: 2rem;
     --gutter-2xl: 3rem;
 
-    /* font sizez */
-    --font-size-sm: 0.875rem;
-    --font-size-md: 1rem;
-    --font-size-lg: 1.125rem;
+    /* font sizes */
+    --font-size-sm: 0.8125rem;
+    --font-size-md: 0.9375rem;
+    --font-size-lg: 1.0625rem;
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
 
-    /* border radius */
-    --border-radius-sm: 0.2rem;
-    --border-radius-md: 0.25rem;
-    --border-radius-lg: 0.3rem;
-    --border-radius-xl: 0.4rem;
-    --border-radius-2xl: 0.5rem;
-
+    /* border radius: small for controls, larger for surfaces */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.4rem;
+    --border-radius-lg: 0.75rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-2xl: 1rem;
 }
