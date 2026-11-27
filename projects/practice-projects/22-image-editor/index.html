@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Edit photos in your browser. Adjust filters, apply presets and download the result. Nothing is uploaded.">
+    <title>Image Editor</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="style.css">
@@ -14,35 +15,55 @@
 <body>
 
     <main>
-        <section>
+        <section class="editor" aria-label="Image editor">
             <div class="left">
-                <div class="top">
-                    <label for="image-input" class="btn">
-                        Choose Image
-                        <input type="file" id="image-input" accept="image/*" hidden>
+                <div class="top" role="toolbar" aria-label="Image actions">
+                    <label for="image-input" class="btn" id="choose-label">
+                        <i class="ri-image-add-line" aria-hidden="true"></i>
+                        Choose image
                     </label>
-                    <button class="btn" id="reset-btn">Reset</button>
-                    <button class="btn" id="download-btn">Download</button>
+                    <!-- Visually hidden instead of `hidden`, so keyboard users can still reach it -->
+                    <input type="file" id="image-input" accept="image/*" class="visually-hidden">
+
+                    <button type="button" class="btn" id="reset-btn" disabled>
+                        <i class="ri-refresh-line" aria-hidden="true"></i>
+                        Reset
+                    </button>
+                    <button type="button" class="btn" id="download-btn" disabled>
+                        <i class="ri-download-2-line" aria-hidden="true"></i>
+                        Download
+                    </button>
                 </div>
+
                 <div class="bottom">
-                    <div class="placeholder">
-                        <i class="ri-file-image-line"></i>
-                        <p>No Image chosen</p>
+                    <div class="placeholder" id="placeholder">
+                        <i class="ri-file-image-line" aria-hidden="true"></i>
+                        <p>Choose an image, or drop one here</p>
                     </div>
-                    <canvas id="image-canvas" hidden></canvas>
+                    <canvas id="image-canvas" hidden role="img" aria-label="Edited image preview"></canvas>
                 </div>
+
+                <p class="status" id="status" role="status" aria-live="polite"></p>
             </div>
-            <div class="right">
-                <h2>filters</h2>
-                <div class="filters">
+
+            <aside class="right" aria-label="Adjustments">
+                <h2 id="filters-heading">Filters</h2>
+                <div class="filters" id="filters" aria-labelledby="filters-heading">
+                    <!-- script.js builds one .filter per adjustment, e.g.:
                     <div class="filter">
+                        <label for="brightness">Brightness <output>100%</output></label>
+                        <input type="range" id="brightness" min="0" max="200" value="100">
                     </div>
+                    -->
                 </div>
-                <h2>presets</h2>
-                <div class="presets"></div>
-            </div>
+
+                <h2 id="presets-heading">Presets</h2>
+                <div class="presets" id="presets" aria-labelledby="presets-heading"></div>
+            </aside>
         </section>
     </main>
+
+    <noscript>This editor needs JavaScript to work.</noscript>
 
 </body>
 
